@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="184dp"
+        android:layout_height="153dp"
+        android:orientation="horizontal"
+        app:srcCompat="@mipmap/emblem"
+        android:layout_marginLeft="-10pt"
+        android:layout_marginTop="5pt"
+        />
+
+    <TextView
+        android:id="@+id/caption1"
+        android:layout_width="236dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="30pt"
+        android:layout_marginTop="-60pt"
+        android:ellipsize="end"
+        android:text="@string/Title"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="382dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20pt"
+        android:hint="Email Address"
+        android:inputType="text"
+        android:maxLines="1"
+        android:padding="10dp"
+        android:textColor="@color/teal_200"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5pt"
+        android:hint="Password"
+        android:maxLines="1"
+        android:padding="10dp"
+        android:inputType="textPassword"
+        android:textColor="@color/teal_200"
+        android:textSize="16sp" />
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="login"
+        android:layout_marginTop="10pt"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp" >
+
+    </Button>
+
+
+    <TextView
+        android:id="@+id/caption4"
+        android:autoLink="all"
+        android:layout_width="289dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="2pt"
+        android:maxLines="1"
+        android:text="@string/RegisterLink"
+        android:textSize="16sp" />
+
+
+
+</LinearLayout>
