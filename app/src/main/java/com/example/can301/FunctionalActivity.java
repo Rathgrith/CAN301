@@ -1,8 +1,8 @@
 package com.example.can301;
 
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
 
 public class FunctionalActivity extends AppCompatActivity {
 
