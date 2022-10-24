@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     // notifications
     String success = "Login success.";
     String fail = "Login failed";
+    private WebView mWebview;
     private boolean loginFlag;
 
 
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         // find element
         lBtn = findViewById(R.id.btn_login);
+        mWebview = findViewById(R.id.l2d);
         inputEmail = findViewById(R.id.email);
         inputPassword = findViewById(R.id.password);
         loginFlag = false;
@@ -40,9 +45,34 @@ public class MainActivity extends AppCompatActivity {
             // 直接跳转
            jumpToMain();
         }
+
+        mWebview.getSettings().setJavaScriptEnabled(true);
+        mWebview.getSettings().setAllowFileAccess(true);
+        mWebview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        mWebview.getSettings().setDomStorageEnabled(true);
+        mWebview.getSettings().setDefaultTextEncodingName("utf-8");
+        //mWebview.getSettings().setDefaultTextEncodingName("utf-8");
+        mWebview.loadUrl("file:///android_asset/www/l2d.html");
         lBtn.setOnClickListener(this::onClick);
 
     }
+
+   /* private void loadLocalUrl(String url) {
+        WebSettings webSettings =mWebview.getSettings();
+        //允许javascript
+        webSettings.setJavaScriptEnabled(true);
+        //允许android 调用javascript
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+
+        //内嵌App，不以浏览器的方式打开
+        mWebview.setWebViewClient(new WebViewClient() );
+        //编码格式
+        webSettings.setAllowFileAccess(true);
+        //.setDefaultTextEncodingName("utf-8");
+        mWebview.loadUrl(url);
+    }*/
+
 
     private void onClick(View view){
         String username = inputEmail.getText().toString();
