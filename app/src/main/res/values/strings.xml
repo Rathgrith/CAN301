@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">XJTLU Library</string>
     <string name="Title">Xi‘an JiaoTong Liverpool University Library</string>
-    <string name="RegisterLink">Do not have an account? <a href='www.baidu.com'>Register Now!</a></string>
+    <string name="RegisterLink">Register Now!</string>
     <string name="title_activity_function">FunctionActivity</string>
     <string name="login_flag">0</string>
 </resources>

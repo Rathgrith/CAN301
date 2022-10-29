@@ -34,7 +34,7 @@
         android:layout_width="382dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20pt"
-        android:hint="Email Address"
+        android:hint="Enter Email Address"
         android:inputType="text"
         android:maxLines="1"
         android:padding="10dp"
@@ -46,57 +46,53 @@
         android:layout_width="383dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5pt"
-        android:hint="Password"
+        android:hint="Enter Password"
         android:inputType="textPassword"
         android:maxLines="1"
         android:padding="10dp"
         android:textColor="@color/teal_200"
         android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="200dp"
+    <EditText
+        android:id="@+id/confirm_password"
+        android:layout_width="383dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10pt"
+        android:layout_marginTop="5pt"
+        android:hint="Confirm your Password"
+        android:inputType="textPassword"
+        android:maxLines="1"
         android:padding="10dp"
-        android:text="login">
+        android:textColor="@color/teal_200"
+        android:textSize="16sp" />
 
-    </Button>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="20pt"
-        android:paddingTop="2pt"
-        >
-        <TextView
-            android:id="@+id/caption4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="2pt"
-            android:autoLink="all"
-            android:maxLines="1"
-            android:text="Do not have an account? "
-            android:textSize="16sp" />
+        android:paddingLeft="30pt"
+        android:paddingTop="3pt">
 
-        <TextView
-            android:id="@+id/regLink"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="70pt"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="2pt"
-            android:autoLink="all"
-            android:maxLines="1"
-            android:text="@string/RegisterLink"
-            android:textColor="#2180F3"
-            android:clickable="true"
-            android:textSize="16sp" />
+            android:padding="10dp"
+            android:text="Register"></Button>
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="40pt"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="cancel"
+            android:layout_marginLeft="2pt"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/teal_700"
+            />
+
     </LinearLayout>
-
-
 
     <WebView
         android:id="@+id/l2d"
