@@ -60,6 +60,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10pt"
         android:padding="10dp"
+        android:background="@color/navy"
         android:text="login">
 
     </Button>

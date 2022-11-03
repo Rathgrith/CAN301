@@ -78,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:padding="10dp"
+            android:background="@color/navy"
             android:text="Register"></Button>
 
         <Button
