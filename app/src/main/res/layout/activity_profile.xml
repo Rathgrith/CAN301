@@ -33,12 +33,12 @@
                 android:id="@+id/emailTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="UserEmailHere@gmail.com"
                 android:layout_marginTop="190dp"
-                android:textAlignment="center"
                 android:gravity="center"
+                android:text="UserEmailHere@gmail.com"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="16dp"/>
+                android:textSize="16dp" />
 
         </RelativeLayout>
     </RelativeLayout>

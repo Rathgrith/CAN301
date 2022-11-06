@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         }
         this.loadL2d(l2durl);
 
-
+        lBtn.setOnClickListener(this::onClick);
+        rBtn.setOnClickListener(this::onClickRegisterLink);
     }
 
 
@@ -64,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
         mWebview.getSettings().setDefaultTextEncodingName("utf-8");
         //mWebview.getSettings().setDefaultTextEncodingName("utf-8");
         mWebview.loadUrl(url);
-        lBtn.setOnClickListener(this::onClick);
-        rBtn.setOnClickListener(this::onClickRegisterLink);
     }
 
 
