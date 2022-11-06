@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="380dp"
             android:padding="30dp"
-            android:src="@drawable/xjtluLogo" />
+            android:src="@drawable/xjtlulogo" />
 
 
     </RelativeLayout>
