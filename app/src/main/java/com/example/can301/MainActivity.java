@@ -2,6 +2,9 @@ package com.example.can301;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -12,17 +15,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 // Key package for connection！！！
-import com.zhy.http.okhttp.OkHttpUtils;
+//import com.zhy.http.okhttp.OkHttpUtils;
+//import com.zhy.http.okhttp.callback.StringCallback;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.can301.net.OKUT;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import okhttp3.Call;
 
 public class MainActivity extends AppCompatActivity {
     // Computational Intelligence Vision and Security Lab
     private Button lBtn;
     private EditText inputEmail;
     private EditText inputPassword;
+    private String status = String.valueOf('a');
     // notifications
     private String success = "Login success.";
     private String fail = "Login failed";
@@ -30,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView rBtn;
     private WebView mWebview;
     private boolean loginFlag;
+    private Handler handler = new Handler(Looper.getMainLooper());
 
 
     @Override
@@ -71,26 +82,28 @@ public class MainActivity extends AppCompatActivity {
     private void onClick(View view){
         String username = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
-        // 帐号密码目前明文写死，之后可以另外绑定
-       /*邮箱格式校验
-        if(!isEmail(username)){
-            Toast.makeText(getApplicationContext(), "incorrect email!", Toast.LENGTH_SHORT).show();
-        }*/
-        if(username.equals("111111") && password.equals("123456")){
-            //跳转
-            Toast.makeText(getApplicationContext(), success, Toast.LENGTH_SHORT).show();
-            jumpToMain();
-        }else{
-            //fail notification
-            Toast toastCenter = Toast.makeText(getApplicationContext(), fail, Toast.LENGTH_SHORT);
-            toastCenter.setGravity(Gravity.CENTER,0,0);
-            toastCenter.show();
-        }
+        new Thread(){
+            @Override
+            public void run(){
+                try {
+                    String a = OKUT.getInstance().doGet("http://10.0.2.2:8080/user/login?username=admin&password=123");
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            System.out.println(a);
+                            status = a;
+                            jumpToMain();
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
 
+        }.start();
 
 
     }
-
 
     private void onClickRegisterLink(View view){
         jumpToRegister();
