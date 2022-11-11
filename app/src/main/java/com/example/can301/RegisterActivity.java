@@ -137,9 +137,9 @@ public class RegisterActivity extends AppCompatActivity {
     private void jumpToLogin(){
         Intent intent = null;
         //setContentView(R.string.login_flag);
-        intent = new Intent(RegisterActivity.this, MainActivity.class);
+        intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        // finish login activity, 这样回退就不会再返回到login
     }
 
 

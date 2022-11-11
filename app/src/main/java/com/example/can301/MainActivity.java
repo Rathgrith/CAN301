@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -20,8 +21,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.can301.net.NetAgent;
 import com.example.can301.net.OKUT;
+import com.example.can301.net.OkHttpUtils;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private String success = "Login success.";
     private String fail = "Login failed";
     private String l2durl = "file:///android_asset/www/l2d.html";
-    private TextView rBtn;
+    private TextView rBtn,title;
     private WebView mWebview;
     private boolean loginFlag;
     private Handler handler = new Handler(Looper.getMainLooper());
@@ -54,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         mWebview = findViewById(R.id.l2d);
         inputEmail = findViewById(R.id.email);
         inputPassword = findViewById(R.id.password);
+        title = findViewById(R.id.caption1);
         loginFlag = false;
 
         //登录flag，需要后端控制user登陆状态，存一个token
@@ -82,26 +88,62 @@ public class MainActivity extends AppCompatActivity {
     private void onClick(View view){
         String username = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
-        new Thread(){
+//        new Thread(){
+//            @Override
+//            public void run(){
+//                try {
+//                    String a = OKUT.getInstance().doGet("https://mock.apifox.cn/m1/1900048-0-default/user/login?username=admin&password=123");
+//                    handler.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            System.out.println(a);
+//                            status = a;
+//                            jumpToMain();
+//                        }
+//                    });
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//        }.start();
+
+
+
+
+
+//        OkHttpUtils.getSoleInstance().doGet("https://mock.apifox.cn/m1/1900048-0-default/user/login", new NetAgent() {
+//            @Override
+//            public void onSuccess(String result) {
+//                System.out.println(result);
+//                status = result;
+//                title.setText(result);
+////                jumpToMain();
+//
+//            }
+//
+//            @Override
+//            public void onError(Exception e) {
+//                e.printStackTrace();
+//            }
+//        }, this);
+
+        HashMap<String,String> hashMap = new HashMap<>();
+        hashMap.put("username", "admin");
+        hashMap.put("password","123");
+        OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:4523/m1/1900048-0-default/user/login", new NetAgent() {
             @Override
-            public void run(){
-                try {
-                    String a = OKUT.getInstance().doGet("http://10.0.2.2:8080/user/login?username=admin&password=123");
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            System.out.println(a);
-                            status = a;
-                            jumpToMain();
-                        }
-                    });
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            public void onSuccess(String result) {
+                Toast.makeText(MainActivity.this,result,Toast.LENGTH_LONG);
+
+                title.setText(result);
             }
 
-        }.start();
-
+            @Override
+            public void onError(Exception e) {
+                e.printStackTrace();
+            }
+        },hashMap,this);
 
     }
 
@@ -123,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = null;
         //setContentView(R.string.login_flag);
         intent = new Intent(MainActivity.this, RegisterActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         // finish login activity, 这样回退就不会再返回到login
     }
