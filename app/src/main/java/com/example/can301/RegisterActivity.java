@@ -14,6 +14,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.can301.net.NetAgent;
+import com.example.can301.net.OkHttpUtils;
+import com.example.can301.utilities.FastJsonUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -66,11 +72,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    private boolean checkEditText(EditText editText){
+    public boolean checkEditText(EditText editText){
         String toCheck = editText.getText().toString();
         int length = toCheck.length();
         if(length<6){
-            Toast.makeText(this,"Ensure password longer than 6",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Ensure password longer than 6",Toast.LENGTH_SHORT).show();
             return false;
         }
         boolean containNum = false;
@@ -104,28 +110,41 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
+
     private void onClick(View view){
         if(!checkPassword(inputPassword,confirmPassword)){
             return;
         }
-        String username = inputEmail.getText().toString();
-        String password = inputPassword.getText().toString();
-        String confirm = confirmPassword.getText().toString();
-        // 帐号密码目前明文写死，之后可以另外绑定
-       /*邮箱格式校验
-        if(!isEmail(username)){
+        String email = inputEmail.getText().toString();
+        if(!isEmail(email)){
             Toast.makeText(getApplicationContext(), "incorrect email!", Toast.LENGTH_SHORT).show();
-        }*/
-        if(username.equals("111111") && password.equals("123456") && password.equals(confirm)){
-            //跳转
-            Toast.makeText(getApplicationContext(), success, Toast.LENGTH_SHORT).show();
-            jumpToLogin();
-        }else{
-            //fail notification
-            Toast toastCenter = Toast.makeText(getApplicationContext(), fail, Toast.LENGTH_SHORT);
-            toastCenter.setGravity(Gravity.CENTER,0,0);
-            toastCenter.show();
+            return;
         }
+        HashMap<String,String> hashMap = new HashMap<>();
+        hashMap.put("email", inputEmail.getText().toString() );
+        hashMap.put("password",inputPassword.getText().toString());
+        OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:4523/m1/1900048-0-default/user/register", new NetAgent() {
+            @Override
+            public void onSuccess(String result) {
+                Map<String,String> map =  FastJsonUtils.stringToCollect(result);
+                boolean isSuccess = Boolean.parseBoolean(map.get("isSuccess"));
+                String message = map.get("message");
+                if(isSuccess){
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    jumpToLogin();
+                }else{
+                    Toast toastCenter = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+                    toastCenter.setGravity(Gravity.CENTER,0,0);
+                    toastCenter.show();
+                }
+            }
+
+            @Override
+            public void onError(Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "network failure", Toast.LENGTH_SHORT).show();
+            }
+        },hashMap,this);
     }
 
     private void onClickToLogin(View view){

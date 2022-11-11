@@ -1,6 +1,10 @@
 package com.example.can301;
 
+import static com.example.can301.R.string.checkLogged;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -24,11 +28,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.can301.net.NetAgent;
 import com.example.can301.net.OKUT;
 import com.example.can301.net.OkHttpUtils;
+import com.example.can301.utilities.FastJsonUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 import okhttp3.Call;
 
@@ -51,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences sharedPref = getSharedPreferences("config",Context.MODE_PRIVATE);
+        if (sharedPref.getBoolean(getString(checkLogged),false)) {
+            jumpToMain();
+        }
         setContentView(R.layout.activity_main);
 
         // find element
@@ -84,64 +94,72 @@ public class MainActivity extends AppCompatActivity {
         mWebview.loadUrl(url);
     }
 
+    private boolean checkEditText(EditText editText){
+        String toCheck = editText.getText().toString();
+        int length = toCheck.length();
+        if(length<6){
+            Toast.makeText(this,"Ensure password longer than 6",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        boolean containNum = false;
+        boolean containLetter = false;
+        for (int i = 0; i < length; i++) {
+            if(Character.isDigit(toCheck.charAt(i))){
+                containNum = true;
+            }else{
+                containLetter = true;
+            }
+            if(containNum && containLetter){
+                return true;
+            }
+        }
+        if(!(containNum && containLetter)){
+            Toast.makeText(this,"Ensure password contains both letter and word",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
 
     private void onClick(View view){
-        String username = inputEmail.getText().toString();
+        String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
-//        new Thread(){
-//            @Override
-//            public void run(){
-//                try {
-//                    String a = OKUT.getInstance().doGet("https://mock.apifox.cn/m1/1900048-0-default/user/login?username=admin&password=123");
-//                    handler.post(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            System.out.println(a);
-//                            status = a;
-//                            jumpToMain();
-//                        }
-//                    });
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//        }.start();
-
-
-
-
-
-//        OkHttpUtils.getSoleInstance().doGet("https://mock.apifox.cn/m1/1900048-0-default/user/login", new NetAgent() {
-//            @Override
-//            public void onSuccess(String result) {
-//                System.out.println(result);
-//                status = result;
-//                title.setText(result);
-////                jumpToMain();
-//
-//            }
-//
-//            @Override
-//            public void onError(Exception e) {
-//                e.printStackTrace();
-//            }
-//        }, this);
-
+//        if(!isEmail(email)){
+//            Toast.makeText(getApplicationContext(), "incorrect email!", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+        if(!checkEditText(inputPassword)){
+            return;
+        }
         HashMap<String,String> hashMap = new HashMap<>();
-        hashMap.put("username", "admin");
-        hashMap.put("password","123");
-        OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:4523/m1/1900048-0-default/user/login", new NetAgent() {
+        hashMap.put("email", email );
+        hashMap.put("password",password);
+        OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:4523/m1/1900048-0-default/user/login?apifoxApiId=48980389", new NetAgent() {
             @Override
             public void onSuccess(String result) {
-                Toast.makeText(MainActivity.this,result,Toast.LENGTH_LONG);
-
-                title.setText(result);
+                Map<String,String> map =  FastJsonUtils.stringToCollect(result);
+                boolean isSuccess = Boolean.parseBoolean(map.get("isSuccess"));
+                String message = map.get("message");
+                if(isSuccess){
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    SharedPreferences sharedPref = getSharedPreferences("config",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putBoolean("isLoggedIn", true);
+                    editor.apply();
+                    jumpToMain();
+                }else{
+                    Toast toastCenter = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+                    toastCenter.setGravity(Gravity.CENTER,0,0);
+                    toastCenter.show();
+                }
             }
 
             @Override
             public void onError(Exception e) {
                 e.printStackTrace();
+                Toast center = Toast.makeText(getApplicationContext(), "network failure", Toast.LENGTH_SHORT);
+                center.setGravity(Gravity.CENTER,0,0);
+                center.show();
             }
         },hashMap,this);
 
@@ -155,16 +173,15 @@ public class MainActivity extends AppCompatActivity {
     private void jumpToMain(){
         Intent intent = null;
         //setContentView(R.string.login_flag);
-        intent = new Intent(MainActivity.this, FunctionalActivity.class);
+        intent = new Intent(this, FunctionalActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        // finish login activity, 这样回退就不会再返回到login
-        MainActivity.this.finish();
     }
 
     private void jumpToRegister(){
         Intent intent = null;
         //setContentView(R.string.login_flag);
-        intent = new Intent(MainActivity.this, RegisterActivity.class);
+        intent = new Intent(this, RegisterActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         // finish login activity, 这样回退就不会再返回到login
