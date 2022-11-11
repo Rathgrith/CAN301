@@ -4,4 +4,5 @@
     <string name="RegisterLink">Register Now!</string>
     <string name="title_activity_function">FunctionActivity</string>
     <string name="login_flag">0</string>
+    <string name="checkLogged">isLoggedIn</string>
 </resources>
