@@ -24,7 +24,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }git
+    }
     namespace 'com.example.can301'
 }
 
@@ -35,7 +35,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.cardview:cardview:1.0.0'
-// https://mvnrepository.com/artifact/com.alibaba/fastjson
     implementation 'com.alibaba:fastjson:1.2.83'
 
     testImplementation 'junit:junit:4.13.2'
