@@ -8,6 +8,7 @@
     android:padding="10dp"
     tools:context=".MainActivity">
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="184dp"
@@ -46,8 +47,10 @@
         android:layout_width="383dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5pt"
-        android:hint="Enter Password"
+        android:digits="0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM"
+        android:hint="Enter Password (number and letter only)"
         android:inputType="textPassword"
+        android:maxLength="12"
         android:maxLines="1"
         android:padding="10dp"
         android:textColor="@color/teal_200"
@@ -58,8 +61,10 @@
         android:layout_width="383dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5pt"
+        android:digits="0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM"
         android:hint="Confirm your Password"
         android:inputType="textPassword"
+        android:maxLength="12"
         android:maxLines="1"
         android:padding="10dp"
         android:textColor="@color/teal_200"
@@ -69,30 +74,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="30pt"
-        android:paddingTop="3pt">
 
-        <Button
-            android:id="@+id/btn_register"
-            android:layout_width="70pt"
+        android:paddingTop="3pt"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:padding="10dp"
-            android:background="@color/navy"
-            android:text="Register"></Button>
+            android:gravity="right">
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/teal_700"
+                android:padding="10dp"
+                android:text="Register"
+                android:textColor="@color/white" />
+        </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="left">
         <Button
             android:id="@+id/btn_cancel"
-            android:layout_width="40pt"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/navy"
             android:padding="10dp"
             android:text="cancel"
-            android:layout_marginLeft="2pt"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/teal_700"
-            />
-
+            android:textColor="@color/white" />
+        </LinearLayout>
     </LinearLayout>
 
     <WebView
@@ -101,6 +119,5 @@
         android:layout_height="160pt"
         android:layout_marginLeft="0pt"
         android:layout_marginTop="10pt" />
-
 
 </LinearLayout>

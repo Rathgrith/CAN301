@@ -47,6 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5pt"
         android:hint="Password"
+        android:digits="0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM"
+        android:maxLength="12"
         android:inputType="textPassword"
         android:maxLines="1"
         android:padding="10dp"
