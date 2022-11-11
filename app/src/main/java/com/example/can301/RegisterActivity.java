@@ -45,6 +45,52 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
+    private boolean checkPassword(EditText editText0, EditText editTextC){
+        if(!checkEqual(editText0,editTextC)){
+            return false;
+        }
+        if(!checkEditText(editText0)){
+            return false;
+        }
+        return true;
+    }
+
+
+
+    private boolean checkEqual(EditText editTextOrigin, EditText editTextRepeat){
+        if(!editTextOrigin.getText().toString().equals(editTextRepeat.getText().toString())){
+            Toast.makeText(this, "you input 2 different password",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+
+    private boolean checkEditText(EditText editText){
+        String toCheck = editText.getText().toString();
+        int length = toCheck.length();
+        if(length<6){
+            Toast.makeText(this,"Ensure password longer than 6",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        boolean containNum = false;
+        boolean containLetter = false;
+        for (int i = 0; i < length; i++) {
+            if(Character.isDigit(toCheck.charAt(i))){
+                containNum = true;
+            }else{
+                containLetter = true;
+            }
+            if(containNum && containLetter){
+                return true;
+            }
+        }
+        if(!(containNum && containLetter)){
+            Toast.makeText(this,"Ensure password contains both letter and word",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
     private void loadL2d(String url){
         mWebview.getSettings().setJavaScriptEnabled(true);
         mWebview.getSettings().setAllowFileAccess(true);
@@ -59,6 +105,9 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private void onClick(View view){
+        if(!checkPassword(inputPassword,confirmPassword)){
+            return;
+        }
         String username = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
         String confirm = confirmPassword.getText().toString();
