@@ -195,4 +195,15 @@ public class MainActivity extends AppCompatActivity {
         Matcher m = p.matcher(strEmail);
         return m.matches();
     }
+
+    // saving info in shared preferences file for displaying it on the profile
+    public void onSave(){
+        // retrieve info from email edit field
+        String email = inputEmail.getText().toString();
+        // shared preferences save info
+        SharedPreferences mypref = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences.Editor editor = mypref.edit();
+        editor.putString("keyemail", email);
+        editor.commit();
+    }
 }
