@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
+    tools:context=".LoginActivity"
     android:background="@color/navy">
 
     <RelativeLayout
@@ -30,7 +30,7 @@
             android:layout_marginTop="15dp"
             android:text="Temperature - 23°C"
             android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
             android:layout_marginTop="35dp"
             android:text="Humidity - 40%"
             android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -116,22 +116,8 @@
                 android:layout_marginTop="450dp"
                 android:src="@drawable/circle" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="310dp"
-                android:layout_marginTop="375dp"
-                android:text="Help &amp; Info"
-                android:textSize="15dp"
-                android:textColor="@color/black" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|bottom"
-                android:layout_marginLeft="310dp"
-                android:layout_marginTop="350dp"
-                android:src="@drawable/circle" />
+
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -228,6 +214,25 @@
                 android:layout_marginLeft="330dp"
                 android:layout_marginTop="550dp"
                 android:src="@drawable/desk3" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MainActivity">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="212dp"
+                    android:clickable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@android:drawable/ic_input_add"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="40dp"

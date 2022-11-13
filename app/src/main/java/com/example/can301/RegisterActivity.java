@@ -1,15 +1,14 @@
 package com.example.can301;
 
+import static com.example.can301.utilities.ValidateUtil.validate;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,8 +19,6 @@ import com.example.can301.utilities.FastJsonUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
     // Computational Intelligence Vision and Security Lab
@@ -116,7 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
         String email = inputEmail.getText().toString();
-        if(!isEmail(email)){
+        if(!validate(email)){
             Toast.makeText(getApplicationContext(), "incorrect email!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -156,17 +153,8 @@ public class RegisterActivity extends AppCompatActivity {
     private void jumpToLogin(){
         Intent intent = null;
         //setContentView(R.string.login_flag);
-        intent = new Intent(this, MainActivity.class);
+        intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-    }
-
-
-
-    private static boolean isEmail(String strEmail) {
-        String strPattern = "^[a-zA-Z][w.-]*[a-zA-Z0-9]@[a-zA-Z0-9][w.-]*[a-zA-Z0-9].[a-zA-Z][a-zA-Z.]*[a-zA-Z]$";
-        Pattern p = Pattern.compile(strPattern);
-        Matcher m = p.matcher(strEmail);
-        return m.matches();
     }
 }
