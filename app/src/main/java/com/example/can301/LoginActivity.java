@@ -125,13 +125,14 @@ public class LoginActivity extends AppCompatActivity {
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("email", email );
         hashMap.put("password",password);
-        OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:4523/m1/1900048-0-default/user/login?apifoxApiId=48980389", new NetAgent() {
+        OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:8081/user/login", new NetAgent() {
             @Override
             public void onSuccess(String result) {
                 Map<String,String> map =  FastJsonUtils.stringToCollect(result);
-                boolean isSuccess = Boolean.parseBoolean(map.get("isSuccess"));
+                String isSuccess = map.get("isSuccess");
                 String message = map.get("message");
-                if(isSuccess){
+                System.out.println();
+                if(isSuccess.equals("200")){
                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                     SharedPreferences sharedPref = getSharedPreferences("config",Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
