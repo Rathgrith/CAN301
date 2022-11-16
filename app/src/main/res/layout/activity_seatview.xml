@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/navy"
     android:orientation="vertical"
-    tools:context=".LoginActivity"
-    android:background="@color/navy">
+    tools:context=".LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        >
+        android:layout_height="60dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,8 +47,8 @@
         android:layout_height="match_parent"
         android:layout_margin="7dp"
         app:cardCornerRadius="5dp"
-        app:cardElevation="2dp"
-        >
+        app:cardElevation="2dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp">
@@ -91,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="280dp"
                 android:layout_marginTop="15dp"
-                android:text=" Available"/>
+                android:text=" Available" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -105,8 +104,8 @@
                 android:layout_marginLeft="320dp"
                 android:layout_marginTop="475dp"
                 android:text="Stair"
-                android:textSize="15dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
 
             <ImageView
@@ -115,8 +114,6 @@
                 android:layout_marginLeft="300dp"
                 android:layout_marginTop="450dp"
                 android:src="@drawable/circle" />
-
-
 
 
             <ImageView
@@ -132,8 +129,8 @@
                 android:layout_marginLeft="185dp"
                 android:layout_marginTop="225dp"
                 android:text="Printer"
-                android:textSize="20dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -232,8 +229,19 @@
                     app:srcCompat="@android:drawable/ic_input_add"
                     tools:ignore="MissingConstraints" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingActionButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="17dp"
+                    android:layout_marginBottom="14dp"
+                    android:clickable="true"
+                    app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@android:drawable/ic_media_rew" />
 
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
 
@@ -385,9 +393,6 @@
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
-
-
-
 
 
 </LinearLayout>
