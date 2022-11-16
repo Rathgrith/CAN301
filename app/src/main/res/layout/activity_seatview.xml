@@ -234,7 +234,9 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
             <LinearLayout
+
                 android:layout_width="40dp"
                 android:layout_height="215dp"
                 android:layout_marginLeft="30dp"
@@ -376,6 +378,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:src="@drawable/redseat" />
+
             </LinearLayout>
 
 
