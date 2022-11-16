@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private void onClick(View view){
         jumpToProfile();
     }
