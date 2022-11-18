@@ -137,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences sharedPref = getSharedPreferences("config",Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putBoolean("isLoggedIn", true);
+                    editor.putString(String.valueOf(R.string.checkEmail),email);
                     editor.apply();
                     jumpToMain();
                 }else{
@@ -179,14 +180,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // saving info in shared preferences file for displaying it on the profile
-    public void onSave(){
-        // retrieve info from email edit field
-        String email = inputEmail.getText().toString();
-
-        // shared preferences save info
-        SharedPreferences mypref = getSharedPreferences("login", MODE_PRIVATE);
-        SharedPreferences.Editor editor = mypref.edit();
-        editor.putString("keyemail", email);
-        editor.commit();
-    }
+//    public void onSave(){
+//        // retrieve info from email edit field
+//        String email = inputEmail.getText().toString();
+//
+//        // shared preferences save info
+//        SharedPreferences mypref = getSharedPreferences("login", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = mypref.edit();
+//        editor.putString("keyemail", email);
+//        editor.commit();
+//    }
 }

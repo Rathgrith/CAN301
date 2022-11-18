@@ -5,4 +5,5 @@
     <string name="title_activity_function">FunctionActivity</string>
     <string name="login_flag">0</string>
     <string name="checkLogged">isLoggedIn</string>
+    <string name="checkEmail">email</string>
 </resources>
