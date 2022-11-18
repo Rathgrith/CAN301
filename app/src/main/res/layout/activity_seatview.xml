@@ -58,7 +58,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="7dp"
-        android:background="@mipmap/background"
         app:cardBackgroundColor="#95FFFFFF"
         app:cardCornerRadius="5dp"
         app:cardElevation="2dp">
