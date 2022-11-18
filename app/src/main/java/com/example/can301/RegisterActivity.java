@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_register);
         // find element
         rBtn = findViewById(R.id.btn_register);
@@ -113,6 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
         String email = inputEmail.getText().toString();
+        Toast.makeText(getApplicationContext(), email, Toast.LENGTH_SHORT).show();
         if(!validate(email)){
             Toast.makeText(getApplicationContext(), "incorrect email!", Toast.LENGTH_SHORT).show();
             return;
