@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/navy"
+    android:background="@mipmap/library"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
@@ -21,6 +21,18 @@
             android:textColor="@color/white"
             android:textSize="30dp" />
 
+        <!--webtianqi-->
+        <!--        <WebView-->
+        <!--            android:id="@+id/weather"-->
+        <!--            android:layout_width="40pt"-->
+        <!--            android:layout_height="20pt"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:layout_marginTop="9dp"-->
+        <!--            android:layout_marginEnd="159dp">-->
+
+
+        <!--        </WebView>-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,12 +58,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="7dp"
+        app:cardBackgroundColor="#95FFFFFF"
         app:cardCornerRadius="5dp"
         app:cardElevation="2dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:background="#00FFFFFF">
 
             <ImageView
                 android:layout_width="20dp"
@@ -91,12 +105,50 @@
                 android:layout_marginLeft="280dp"
                 android:layout_marginTop="15dp"
                 android:text=" Available" />
+
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="40dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00FFFFFF"
+                android:backgroundTint="#00FFFFFF"
+                android:backgroundTintMode="add"
+                tools:context=".MainActivity">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="212dp"
+                    android:clickable="true"
+                    app:backgroundTint="#9E8679"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@android:drawable/ic_menu_my_calendar"
+                    tools:ignore="MissingConstraints" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingActionButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="17dp"
+                    android:layout_marginBottom="14dp"
+                    android:clickable="true"
+                    android:tint="#000000"
+                    app:backgroundTint="#9E8679"
+                    app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@android:drawable/ic_popup_sync" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -106,14 +158,6 @@
                 android:text="Stair"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="300dp"
-                android:layout_marginTop="450dp"
-                android:src="@drawable/circle" />
 
 
             <ImageView
@@ -145,6 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="205dp"
                 android:layout_marginTop="15dp"
+                android:background="#A9FFFFFF"
                 android:src="@drawable/desk1" />
 
             <ImageView
@@ -154,9 +199,12 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="20dp"
-                android:src="@drawable/desk1" />
+                android:background="#A9FFFFFF"
+                android:src="@drawable/desk1"
+                android:visibility="visible" />
 
             <ImageView
+                android:id="@+id/table1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
@@ -212,43 +260,13 @@
                 android:layout_marginTop="550dp"
                 android:src="@drawable/desk3" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".MainActivity">
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floatingActionButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="212dp"
-                    android:clickable="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:srcCompat="@android:drawable/ic_input_add"
-                    tools:ignore="MissingConstraints" />
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floatingActionButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="17dp"
-                    android:layout_marginBottom="14dp"
-                    android:clickable="true"
-                    app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:srcCompat="@android:drawable/ic_media_rew" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <LinearLayout
 
                 android:layout_width="40dp"
                 android:layout_height="215dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="90dp"
+                android:background="#A9FFFFFF"
                 android:orientation="vertical">
 
                 <ImageView
@@ -257,7 +275,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/greenseat" />
+                    android:src="@drawable/grayseat" />
 
                 <ImageView
                     android:id="@+id/seat2"
@@ -281,7 +299,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/greenseat" />
+                    android:src="@drawable/grayseat" />
 
                 <ImageView
                     android:id="@+id/seat5"
@@ -297,7 +315,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/greenseat" />
+                    android:src="@drawable/grayseat" />
 
                 <ImageView
                     android:id="@+id/seat7"
@@ -305,7 +323,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/greenseat" />
+                    android:src="@drawable/grayseat" />
 
                 <ImageView
                     android:id="@+id/seat8"
@@ -313,7 +331,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/redseat" />
+                    android:src="@drawable/grayseat" />
             </LinearLayout>
 
             <LinearLayout
@@ -321,6 +339,7 @@
                 android:layout_height="215dp"
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="90dp"
+                android:background="#A9FFFFFF"
                 android:orientation="vertical">
 
                 <ImageView
@@ -329,7 +348,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/redseat" />
+                    android:src="@drawable/grayseat" />
 
                 <ImageView
                     android:id="@+id/seat10"
@@ -353,7 +372,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/greenseat" />
+                    android:src="@drawable/grayseat" />
 
                 <ImageView
                     android:id="@+id/seat13"
@@ -361,7 +380,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/greenseat" />
+                    android:src="@drawable/grayseat" />
 
                 <ImageView
                     android:id="@+id/seat14"
@@ -369,7 +388,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/greenseat" />
+                    android:src="@drawable/grayseat" />
 
                 <ImageView
                     android:id="@+id/seat15"
@@ -377,7 +396,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/greenseat" />
+                    android:src="@drawable/grayseat" />
 
                 <ImageView
                     android:id="@+id/seat16"
@@ -385,7 +404,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/redseat" />
+                    android:src="@drawable/grayseat" />
 
             </LinearLayout>
 
