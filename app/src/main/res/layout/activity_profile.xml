@@ -29,19 +29,14 @@
                         android:layout_width="1200dp"
                         android:layout_height="140dp"
                         android:layout_marginTop="40dp"
-                        android:src="@drawable/default_prof" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Profile"
-                        android:textColor="@color/navy"
-                        android:textStyle="bold" />
+                        android:src="@drawable/default_prof"
+                        android:layout_centerHorizontal="true"/>
 
                     <TextView
                         android:id="@+id/emailTV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginTop="190dp"
                         android:gravity="center"
                         android:text="UserEmailHere@gmail.com"
@@ -61,10 +56,8 @@
                     android:id="@+id/nicknameTV"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="60dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="30dp"
                     android:background="@drawable/border"
                     android:drawableStart="@drawable/ic_baseline_account_box_24"
                     android:gravity="left"
@@ -78,10 +71,9 @@
                     android:id="@+id/cashTV"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="140dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="30dp"
+                    android:layout_below="@+id/nicknameTV"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/border"
                     android:drawableStart="@drawable/ic_baseline_monetization_on_24"
                     android:gravity="left"
@@ -95,10 +87,9 @@
                     android:id="@+id/timeTV"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="220dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="30dp"
+                    android:layout_below="@+id/cashTV"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/border"
                     android:drawableStart="@drawable/ic_baseline_alarm_24"
                     android:gravity="left"
@@ -112,10 +103,9 @@
                     android:id="@+id/dayTV"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="300dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="0dp"
+                    android:layout_below="@+id/timeTV"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/border"
                     android:drawableStart="@drawable/ic_baseline_calendar_today_24"
                     android:gravity="left"
@@ -145,7 +135,8 @@
                     android:layout_marginBottom="40dp"
                     android:padding="30dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/xjtlulogo" />
+                    android:src="@drawable/xjtlulogo"
+                    android:layout_centerHorizontal="true"/>
 
 
             </RelativeLayout>
