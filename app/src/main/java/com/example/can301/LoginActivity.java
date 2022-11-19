@@ -1,20 +1,27 @@
 package com.example.can301;
 
+import static android.content.ContentValues.TAG;
 import static com.example.can301.R.string.checkLogged;
 import static com.example.can301.utilities.ValidateUtil.validate;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +38,7 @@ import java.util.Map;
 //import com.zhy.http.okhttp.OkHttpUtils;
 //import com.zhy.http.okhttp.callback.StringCallback;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnFocusChangeListener {
     private Button lBtn;
     private EditText inputEmail;
     private EditText inputPassword;
@@ -43,6 +50,11 @@ public class LoginActivity extends AppCompatActivity {
     private TextView rBtn,title;
     private WebView mWebview;
     private boolean loginFlag;
+    private ScrollView scrollView;
+    private View finalShow;
+    private int noKeyBoardHeight;
+    private Rect rect = new Rect();
+    private int[] location = new int[2];
     private Handler handler = new Handler(Looper.getMainLooper());
 
 
@@ -53,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         if (sharedPref.getBoolean(getString(checkLogged),false)) {
             jumpToMain();
         }
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_login);
 
         // find element
@@ -64,6 +76,8 @@ public class LoginActivity extends AppCompatActivity {
         inputPassword = findViewById(R.id.password);
         title = findViewById(R.id.caption1);
         loginFlag = false;
+        scrollView = findViewById(R.id.out_est);
+        finalShow = lBtn;
 
         //登录flag，需要后端控制user登陆状态，存一个token
         if(loginFlag){
@@ -72,10 +86,45 @@ public class LoginActivity extends AppCompatActivity {
         }
         this.loadL2d(l2durl);
 
+
+
         lBtn.setOnClickListener(this::onClick);
         rBtn.setOnClickListener(this::onClickRegisterLink);
+
+
+
+        // try to prevent softkeyboard from hide button
+        inputEmail.setOnFocusChangeListener(this);
+        inputPassword.setOnFocusChangeListener(this);
+        scrollView.getWindowVisibleDisplayFrame(rect);
+        noKeyBoardHeight = rect.bottom;
     }
 
+    @Override
+
+    protected void onStart() {
+
+        super.onStart();
+        final int[] times = {1};
+        ViewTreeObserver observer=scrollView.getViewTreeObserver();
+
+        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+            @Override
+
+            public void onGlobalLayout() {
+                if(times[0] ==1){
+//                    Log.d(TAG, "test if once only");
+                    rBtn.getLocationOnScreen(location);
+                    times[0]++;
+                }
+
+            }
+
+        });
+
+
+    }
 
     private void loadL2d(String url){
         mWebview.getSettings().setJavaScriptEnabled(true);
@@ -181,6 +230,42 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onFocusChange(View view, boolean hasFocus) {
+        Log.d(TAG, "onFocusChange: "+hasFocus);
+            if(hasFocus){
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.getWindowVisibleDisplayFrame(rect);
+                        int current = rect.bottom;
+                        while (current==noKeyBoardHeight){
+                            scrollView.getWindowVisibleDisplayFrame(rect);
+                            current = rect.bottom;
+                        }
+//                        in case hide half
+                        int safeMargin = 40;
+                        int scrollHeight = (location[1] + safeMargin + rBtn.getHeight()) - current;
+//                        Log.d(TAG, "run: "+location[1]);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                scrollView.scrollTo(0, (int)scrollHeight);
+                            }
+                        });
+
+                    }
+                }).start();
+
+//                Log.d(TAG, "onFocusrb1"+b1);
+
+
+
+            }
+
+        }
+
+    }
     // saving info in shared preferences file for displaying it on the profile
 //    public void onSave(){
 //        // retrieve info from email edit field
@@ -192,4 +277,3 @@ public class LoginActivity extends AppCompatActivity {
 //        editor.putString("keyemail", email);
 //        editor.commit();
 //    }
-}

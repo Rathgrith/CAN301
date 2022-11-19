@@ -1,21 +1,20 @@
 package com.example.can301;
 
-import android.os.Bundle;
-import android.widget.TextView;
+import android.app.Activity;
 import android.content.SharedPreferences;
-import android.view.View;
+import android.os.Bundle;
+import android.view.Window;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import org.w3c.dom.Text;
-
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends Activity {
 
     private TextView emailTV, nicknameTV, cashTV, timeTV, dayTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 隐藏标题栏
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_profile);
 
         emailTV = (TextView) findViewById(R.id.emailTV);
