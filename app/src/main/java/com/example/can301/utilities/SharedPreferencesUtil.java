@@ -1,4 +1,4 @@
-package com.example.can301;
+package com.example.can301.utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;

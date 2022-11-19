@@ -5,6 +5,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.can301.customizedClass.DataItem;
+
 public class ItemExchangeActivity extends AppCompatActivity {
     RecyclerViewAdapter adapter;
     @Override

@@ -1,4 +1,4 @@
-package com.example.can301;
+package com.example.can301.customizedClass;
 
 public class User {
     private String uid;
