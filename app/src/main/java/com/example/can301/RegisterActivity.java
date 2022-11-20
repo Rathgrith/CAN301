@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 import static com.example.can301.utilities.ValidateUtil.validate;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,13 +39,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
     private String fail = "Register failed";
     private String l2durl = "file:///android_asset/www/l2d.html";
     private WebView mWebview;
-
+    private String backendUrl;
 
     private ScrollView scrollView;
     private View finalShow;
     private int noKeyBoardHeight;
     private Rect rect = new Rect();
     private int[] location = new int[2];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
         inputPassword.setOnFocusChangeListener(this);
         confirmPassword.setOnFocusChangeListener(this);
         inputEmail.setOnFocusChangeListener(this);
+        rBtn.setOnClickListener(this::onClick);
+        cBtn.setOnClickListener(this::onClickToLogin);
+        Resources res = getResources();
+        backendUrl = (String) res.getText(R.string.remoteBaseUrl);
 
 //        below is to prevent the keyboard from hidding the button
         scrollView = findViewById(R.id.out_est);
@@ -146,8 +152,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
         mWebview.getSettings().setDefaultTextEncodingName("utf-8");
         //mWebview.getSettings().setDefaultTextEncodingName("utf-8");
         mWebview.loadUrl(url);
-        rBtn.setOnClickListener(this::onClick);
-        cBtn.setOnClickListener(this::onClickToLogin);
     }
 
 
@@ -164,7 +168,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("email", inputEmail.getText().toString());
         hashMap.put("password", inputPassword.getText().toString());
-        OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:4523/m1/1900048-0-default/user/register", new NetAgent() {
+        OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/user/register", new NetAgent() {
             @Override
             public void onSuccess(String result) {
                 Map<String, String> map = FastJsonUtils.stringToCollect(result);

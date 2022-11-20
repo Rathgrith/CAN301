@@ -3,6 +3,7 @@ package com.example.can301;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -34,6 +35,7 @@ public class MainActivity extends Activity {
     private ImageView horTable2Btn;
     private ImageView sqrTable1Btn;
     private ImageView sqrTable2Btn;
+    private String backendUrl;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -56,6 +58,8 @@ public class MainActivity extends Activity {
         sqrTable2Btn = findViewById(R.id.squareTable2);
         flushbtn = findViewById(R.id.floatingActionButton2);
 
+        Resources res = getResources();
+        backendUrl = (String) res.getText(R.string.remoteBaseUrl);
         //loadWeather(weatherurl);
         findSeat();
         getSeatStatus();
@@ -91,7 +95,7 @@ public class MainActivity extends Activity {
 
     private void getSeatStatus(){
         HashMap hashMap = new HashMap();
-        OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:8081/seat/listseat", new NetAgent() {
+        OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/seat/listseat", new NetAgent() {
             @Override
             public void onSuccess(String result) {
                 Map<String, String> map = FastJsonUtils.stringToCollect(result);
@@ -107,7 +111,7 @@ public class MainActivity extends Activity {
                 seatStatus = ss;
                 System.out.println(seatStatus);
                 if (status.equals("200")) {
-                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Updated seat info", Toast.LENGTH_SHORT).show();
 
                 } else {
                     Toast toastCenter = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
