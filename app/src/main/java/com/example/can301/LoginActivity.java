@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPref = getSharedPreferences("config",Context.MODE_PRIVATE);
-        if (sharedPref.getBoolean(getString(checkLogged),false)) {
+        if (sharedPref.getBoolean("isLoggedIn",false)) {
             jumpToMain();
         }
 //        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -75,15 +75,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         inputEmail = findViewById(R.id.email);
         inputPassword = findViewById(R.id.password);
         title = findViewById(R.id.caption1);
-        loginFlag = false;
         scrollView = findViewById(R.id.out_est);
         finalShow = lBtn;
 
-        //登录flag，需要后端控制user登陆状态，存一个token
-        if(loginFlag){
-            // 直接跳转
-           jumpToMain();
-        }
         this.loadL2d(l2durl);
 
 
@@ -166,35 +160,45 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
         // System.out.println(validate(email));
-        if(!validate(email)){
+       /* if(!validate(email)){
             Toast.makeText(getApplicationContext(), "incorrect email!", Toast.LENGTH_SHORT).show();
             return;
         }
         if(!checkEditText(inputPassword)){
             return;
-        }
+        }*/
         HashMap<String,String> hashMap = new HashMap<>();
-        hashMap.put("email", email );
-        hashMap.put("password",password);
+        hashMap.put("email", "zihan.lyu18@studet.xjtlu.edu.cn" );
+        hashMap.put("password", "123456a");
+        //Log.d(TAG, "Before: " + hashMap);
         OkHttpUtils.getSoleInstance().doPostForm(backendUrl+"/user/login", new NetAgent() {
+        //OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:8080/user/login", new NetAgent() {
             @Override
             public void onSuccess(String result) {
                 Map<String,String> map =  FastJsonUtils.stringToCollect(result);
                 String isSuccess = map.get("isSuccess");
                 String message = map.get("message");
-                System.out.println();
-                if(isSuccess.equals("200")){
-                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                    SharedPreferences sharedPref = getSharedPreferences("config",Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putBoolean(String.valueOf(checkLogged), true);
-                    editor.putString(String.valueOf(R.string.checkEmail),email);
-                    editor.apply();
-                    jumpToMain();
-                }else{
-                    Toast toastCenter = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
-                    toastCenter.setGravity(Gravity.CENTER,0,0);
-                    toastCenter.show();
+                //System.out.println();
+                try{
+                    if(isSuccess.equals("200")){
+                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                        SharedPreferences sharedPref = getSharedPreferences("config",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putBoolean(String.valueOf("isLoggedIn"), true);
+                        editor.putString(String.valueOf(R.string.checkEmail),email);
+                        editor.apply();
+                        jumpToMain();
+                    }
+                    else{
+                        Toast toastCenter = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+                        toastCenter.setGravity(Gravity.CENTER,0,0);
+                        toastCenter.show();
+                    }
+                }
+                catch (Exception e){
+                        Toast toastCenter = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+                        toastCenter.setGravity(Gravity.CENTER,0,0);
+                        toastCenter.show();
                 }
             }
 
@@ -203,6 +207,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
                 e.printStackTrace();
                 Toast center = Toast.makeText(getApplicationContext(), "network failure", Toast.LENGTH_SHORT);
                 center.setGravity(Gravity.CENTER,0,0);
+                Log.d(TAG, "Beforeafter: " );
                 center.show();
             }
         },hashMap,this);

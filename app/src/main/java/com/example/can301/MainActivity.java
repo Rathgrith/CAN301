@@ -77,7 +77,7 @@ public class MainActivity extends Activity {
         sqrTable2Btn.setOnClickListener(this::jumpToSqrTable2);
     }
 
-   /* private void loadWeather(String url){
+    /* private void loadWeather(String url){
         mWebview.getSettings().setJavaScriptEnabled(true);
         mWebview.getSettings().setAllowFileAccess(true);
         mWebview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
