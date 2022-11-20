@@ -17,7 +17,8 @@
         android:textSize="16dp"
         android:id="@+id/itemnameTV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:textSize="16dp"
         android:padding="5dp"
-        android:id="@+id/priceTV"/>
+        android:id="@+id/priceTV"
+        android:textColor="@color/black"/>
 
 </LinearLayout>

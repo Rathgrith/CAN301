@@ -7,20 +7,18 @@ import static com.example.can301.utilities.ValidateUtil.validate;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +54,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
     private Rect rect = new Rect();
     private int[] location = new int[2];
     private Handler handler = new Handler(Looper.getMainLooper());
+    private String backendUrl;
 
 
     @Override
@@ -67,7 +66,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         }
 //        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_login);
-
+        Resources res = getResources();
+        backendUrl = (String) res.getText(R.string.remoteBaseUrl);
         // find element
         lBtn = findViewById(R.id.btn_login);
         rBtn = findViewById(R.id.regLink);
@@ -176,7 +176,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("email", email );
         hashMap.put("password",password);
-        OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:8081/user/login", new NetAgent() {
+        OkHttpUtils.getSoleInstance().doPostForm(backendUrl+"/user/login", new NetAgent() {
             @Override
             public void onSuccess(String result) {
                 Map<String,String> map =  FastJsonUtils.stringToCollect(result);
