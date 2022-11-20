@@ -14,7 +14,18 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
 
+                            'src/main/res/layout/activity_tables',
+                            //下面两个是固定兼容写法
+                            'src/main/res/layout',
+                            'src/main/res'
+                    ]
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
