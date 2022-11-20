@@ -186,7 +186,7 @@ public class MainActivity extends Activity {
         tableBundle.putString("startIndex", "0");
         //长度为16
         tableBundle.putString("seatNumber", "16");
-        tableBundle.putString("type", "vertical");
+        tableBundle.putString("type", "0");
         intent.putExtras(tableBundle);
         startActivity(intent);
     }
@@ -200,7 +200,7 @@ public class MainActivity extends Activity {
         tableBundle.putString("startIndex", "16");
         //长度为16
         tableBundle.putString("seatNumber", "16");
-        tableBundle.putString("type", "vertical");
+        tableBundle.putString("type", "0");
         intent.putExtras(tableBundle);
         startActivity(intent);
     }
@@ -214,7 +214,7 @@ public class MainActivity extends Activity {
         tableBundle.putString("startIndex", "32");
         //长度为10
         tableBundle.putString("seatNumber", "10");
-        tableBundle.putString("type", "horizontal");
+        tableBundle.putString("type", "1");
         intent.putExtras(tableBundle);
         startActivity(intent);
     }
@@ -228,7 +228,7 @@ public class MainActivity extends Activity {
         tableBundle.putString("startIndex", "42");
         //长度为10
         tableBundle.putString("seatNumber", "10");
-        tableBundle.putString("type", "horizontal");
+        tableBundle.putString("type", "1");
         intent.putExtras(tableBundle);
         startActivity(intent);
     }
@@ -242,7 +242,7 @@ public class MainActivity extends Activity {
         tableBundle.putString("startIndex", "52");
         //长度为4
         tableBundle.putString("seatNumber", "4");
-        tableBundle.putString("type", "square");
+        tableBundle.putString("type", "2");
         intent.putExtras(tableBundle);
         startActivity(intent);
     }
@@ -256,7 +256,7 @@ public class MainActivity extends Activity {
         tableBundle.putString("startIndex", "56");
         //长度为4
         tableBundle.putString("seatNumber", "4");
-        tableBundle.putString("type", "square");
+        tableBundle.putString("type", "2");
         intent.putExtras(tableBundle);
         startActivity(intent);
     }

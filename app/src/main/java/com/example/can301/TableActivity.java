@@ -2,6 +2,7 @@ package com.example.can301;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.TextView;
@@ -21,12 +22,15 @@ public class TableActivity extends Activity {
         testTV = findViewById(R.id.testView);
         Intent intent = getIntent();
         Bundle infoBundle = intent.getExtras();
+        // 在res中获取
+            Resources res =getResources();
+            String[] typeArray= res.getStringArray(R.array.tableType);
         startIndex = Integer.parseInt(
                 infoBundle.getString("startIndex"));
         seatNumber = Integer.parseInt(
                 infoBundle.getString("seatNumber"));;
-        type = infoBundle.getString("type");
-        testTV.setText(type + startIndex + ", " + seatNumber);
+        type = typeArray[Integer.parseInt(infoBundle.getString("type"))];
+        testTV.setText(type + "," + startIndex + ", " + seatNumber);
 
 
     }

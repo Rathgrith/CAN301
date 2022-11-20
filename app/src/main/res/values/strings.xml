@@ -6,4 +6,9 @@
     <string name="login_flag">0</string>
     <string name="checkLogged">isLoggedIn</string>
     <string name="checkEmail">email</string>
+    <string-array name="tableType">
+            <item>vertical</item>
+            <item>horizontal</item>
+            <item>square</item>
+    </string-array>
 </resources>
