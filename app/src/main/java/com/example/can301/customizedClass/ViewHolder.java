@@ -13,6 +13,7 @@ import com.example.can301.customizedClass.DataItem;
 public class ViewHolder extends  RecyclerView.ViewHolder{
     TextView itemnameTV;
     ImageView itempicIV;
+    TextView priceTV;
 
 
     public ViewHolder(@NonNull View itemView) {
@@ -20,12 +21,14 @@ public class ViewHolder extends  RecyclerView.ViewHolder{
 
         itempicIV = itemView.findViewById(R.id.itempicIV);
         itemnameTV = itemView.findViewById(R.id.itemnameTV);
+        priceTV = itemView.findViewById(R.id.priceTV);
 
     }
 
     public void onBind(DataItem data){
         itemnameTV.setText(data.getTitle());
         itempicIV.setImageResource(data.getImage());
+        priceTV.setText(Integer.toString(data.getPrice()));
     }
 }
 
