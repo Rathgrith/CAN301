@@ -60,7 +60,7 @@ public class ProfileActivity extends Activity {
                     public void onClick(DialogInterface dialog, int which) {
                         SharedPreferences sharedPreferences = getSharedPreferences("config", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putBoolean(String.valueOf(R.string.checkLogged),false);
+                        editor.putBoolean(String.valueOf("isLoggedIn"),false);
                         editor.putString(String.valueOf(R.string.checkEmail),null);
                         editor.apply();
                         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
