@@ -187,7 +187,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                     SharedPreferences sharedPref = getSharedPreferences("config",Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putBoolean("isLoggedIn", true);
+                    editor.putBoolean(String.valueOf(checkLogged), true);
                     editor.putString(String.valueOf(R.string.checkEmail),email);
                     editor.apply();
                     jumpToMain();
