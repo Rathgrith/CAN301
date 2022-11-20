@@ -8,8 +8,8 @@
     <string name="checkEmail">email</string>
     <string name="remoteBaseUrl">http://47.94.44.163:8080</string>
     <string-array name="tableType">
-            <item>vertical</item>
-            <item>horizontal</item>
-            <item>square</item>
+        <item>vertical</item>
+        <item>horizontal</item>
+        <item>square</item>
     </string-array>
 </resources>
