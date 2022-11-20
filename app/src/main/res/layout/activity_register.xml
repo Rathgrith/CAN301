@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/out_est"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
+    <LinearLayout
+        android:id="@+id/secondLayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
 
     <ImageView
@@ -113,11 +119,13 @@
         </LinearLayout>
     </LinearLayout>
 
-    <WebView
-        android:id="@+id/l2d"
-        android:layout_width="match_parent"
-        android:layout_height="160pt"
-        android:layout_marginLeft="0pt"
-        android:layout_marginTop="10pt" />
+        <WebView
+            android:id="@+id/l2d"
+            android:layout_width="match_parent"
+            android:layout_height="130pt"
+            android:layout_marginLeft="0pt"
+            android:layout_marginTop="10dp"
+            tools:ignore="WebViewLayout" />
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
