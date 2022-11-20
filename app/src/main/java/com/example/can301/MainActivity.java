@@ -141,7 +141,8 @@ public class MainActivity extends Activity {
 
 
     private void findSeat(){
-        for (int i = 1; i < 17; i++) {
+        // 数组越界了就看这里
+        for (int i = 1; i < seatNumber+1; i++) {
             String seatID = "seat" + i;
             // System.out.println(seatID);
             int resID = getResources().getIdentifier(seatID, "id", getPackageName());
@@ -152,19 +153,6 @@ public class MainActivity extends Activity {
         }
     }
 
-/*    private void clearSeat(){
-        int i=0;
-        for (ImageView seat: seatList) {
-            if(seatStatus[i]==0){
-                seat.setImageDrawable(getResources().getDrawable(R.drawable.grayseat));
-            }
-            if(seatStatus[i]==1){
-                seat.setImageDrawable(getResources().getDrawable(R.drawable.grayseat));
-            }
-            seat.setImageDrawable(getResources().getDrawable(R.drawable.grayseat));
-            i++;
-        }
-    }*/
 
 
     private void onClick(View view){
