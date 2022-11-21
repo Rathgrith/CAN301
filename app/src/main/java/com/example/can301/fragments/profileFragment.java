@@ -1,12 +1,10 @@
 package com.example.can301.fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,19 +17,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.can301.LoginActivity;
-import com.example.can301.MainActivity;
 import com.example.can301.R;
-
-import java.util.Objects;
 
 public class profileFragment extends Fragment {
 
     private TextView emailTV, nicknameTV, cashTV, timeTV, dayTV;
     private Button logOut;
+    private View root;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_profile,container,false);
+        root = inflater.inflate(R.layout.fragment_profile,container,false);
 
         return root;
     }
@@ -64,7 +60,6 @@ public class profileFragment extends Fragment {
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         dialog.dismiss();
                     }
                 })
@@ -73,8 +68,9 @@ public class profileFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("config", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putBoolean(String.valueOf(R.string.checkLogged),false);
-                        editor.putString(String.valueOf(R.string.checkEmail),null);
+                        // 这两行有bug，问题sharedpreference没有被改变，于是回到login之后，还会跳转到main
+                        editor.putBoolean("isLoggedIn",false);
+                        editor.putString("email",null);
                         editor.apply();
                         Intent intent = new Intent(requireContext(), LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -1,8 +1,6 @@
 package com.example.can301;
 
 import static android.content.ContentValues.TAG;
-import static com.example.can301.R.string.checkLogged;
-import static com.example.can301.utilities.ValidateUtil.validate;
 
 import android.content.Context;
 import android.content.Intent;
@@ -77,9 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         title = findViewById(R.id.caption1);
         scrollView = findViewById(R.id.out_est);
         finalShow = lBtn;
-
         this.loadL2d(l2durl);
-
 
 
         lBtn.setOnClickListener(this::onClick);
@@ -222,7 +218,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
     private void jumpToMain(){
         Intent intent = null;
         //setContentView(R.string.login_flag);
-        intent = new Intent(this, MainActivity.class);
+        intent = new Intent(this, mainTestActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
