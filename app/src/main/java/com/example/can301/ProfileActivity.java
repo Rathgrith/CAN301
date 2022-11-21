@@ -27,6 +27,8 @@ public class ProfileActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_profile);
         initVariable();
+        // read email from sharedpreference and display
+        readEmail();
     }
 
     public void readEmail(){
