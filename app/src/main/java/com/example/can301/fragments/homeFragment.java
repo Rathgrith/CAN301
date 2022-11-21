@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.can301.ProfileActivity;
 import com.example.can301.R;
 import com.example.can301.TableActivity;
 import com.example.can301.net.NetAgent;
@@ -165,9 +164,12 @@ public class homeFragment extends Fragment {
     }
 
     private void jumpToProfile(){
-        Intent intent = null;
-        intent = new Intent(requireContext(), ProfileActivity.class);
-        startActivity(intent);
+        //Intent intent = null;
+        //intent = new Intent(requireContext(), profileFragment.class);
+        //startActivity(intent);
+        Toast center = Toast.makeText(getActivity().getApplicationContext(), "没写", Toast.LENGTH_SHORT);
+        center.setGravity(Gravity.CENTER, 0, 0);
+        center.show();
     }
     private void jumpToTable1(View view){
         // int id = view.getId();

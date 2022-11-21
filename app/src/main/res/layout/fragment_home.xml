@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/p0"
@@ -12,8 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginBottom="0dp"
-        android:alpha="0.8"
-        android:background="@color/navy">
+        android:alpha="0.7"
+        android:background="@color/navy"
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -120,42 +124,29 @@
             android:layout_marginTop="40dp">
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#00FFFFFF"
-                android:backgroundTint="#00FFFFFF"
-                android:backgroundTintMode="add"
-                tools:context=".MainActivity">
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/floatingActionButton2"
+                android:layout_alignRight="@id/floatingActionButton2"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                app:backgroundTint="?attr/colorButtonNormal"
+                app:srcCompat="@android:drawable/ic_menu_my_calendar"
+                tools:ignore="MissingConstraints" />
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floatingActionButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="420dp"
-                    android:clickable="true"
-                    app:backgroundTint="#3F51B5"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:srcCompat="@android:drawable/ic_menu_my_calendar"
-                    tools:ignore="MissingConstraints" />
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floatingActionButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="16dp"
-                    android:clickable="true"
-                    android:tint="#000000"
-                    app:backgroundTint="#3F51B5"
-                    app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:srcCompat="@android:drawable/ic_popup_sync" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/horizontalTable2"
+                android:layout_alignRight="@id/horizontalTable2"
+                android:layout_marginRight="-10dp"
+                android:layout_marginTop="40dp"
+                android:clickable="true"
+                app:backgroundTint="?attr/colorButtonNormal"
+                app:srcCompat="@android:drawable/ic_popup_sync" />
 
             <ImageView
                 android:id="@+id/squareTable1"
@@ -164,18 +155,18 @@
                 android:layout_alignLeft="@id/table1Sub2"
                 android:layout_alignBottom="@id/table2Sub2"
                 android:layout_marginLeft="70dp"
-                android:src="@drawable/desk3"
                 android:alpha="0"
+                android:src="@drawable/desk3"
                 app:cardBackgroundColor="#72FFFFFF"
                 app:cardCornerRadius="10dp" />
 
             <LinearLayout
-                android:background="#A9FFFFFF"
                 android:id="@+id/sqrTable1Sub1"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_alignLeft="@id/squareTable1"
                 android:layout_alignTop="@id/squareTable1"
+                android:background="#A9FFFFFF"
                 android:orientation="vertical">>
 
                 <ImageView
@@ -223,11 +214,11 @@
             <ImageView
                 android:id="@+id/squareTable2"
                 android:layout_width="75dp"
-                android:alpha="0"
                 android:layout_height="75dp"
                 android:layout_alignLeft="@id/squareTable1"
                 android:layout_alignBottom="@id/squareTable1"
                 android:layout_marginLeft="90dp"
+                android:alpha="0"
                 android:src="@drawable/desk3" />
 
             <LinearLayout
@@ -285,9 +276,9 @@
                 android:id="@+id/horizontalTable2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:alpha="0"
                 android:layout_marginLeft="205dp"
                 android:layout_marginTop="15dp"
+                android:alpha="0"
                 android:src="@drawable/desk1" />
 
             <LinearLayout
@@ -399,12 +390,12 @@
             <ImageView
                 android:id="@+id/horizontalTable1"
                 android:layout_width="wrap_content"
-                android:alpha="0"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="20dp"
+                android:alpha="0"
                 android:src="@drawable/desk1"
                 android:visibility="visible" />
 
@@ -684,7 +675,6 @@
                 android:src="@drawable/desk2" />
 
             <LinearLayout
-
                 android:id="@+id/table2Sub1"
                 android:layout_width="40dp"
                 android:layout_height="215dp"
@@ -834,11 +824,20 @@
                     android:layout_marginTop="5dp"
                     android:src="@drawable/grayseat" />
 
+
             </LinearLayout>
-
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:alpha="0.8"
+                android:layout_below="@+id/squareTable2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:padding="45dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/xjtlulogo" />
         </RelativeLayout>
-
     </androidx.cardview.widget.CardView>
-
-
 </LinearLayout>
+</ScrollView>

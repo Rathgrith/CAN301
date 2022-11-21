@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="navy">#010544</color>
     <color name="purple">#CE57C1</color>
+    <!--floatingactionbutton's coclor-->
+    <color name="text_color">#000000</color>
 </resources>
