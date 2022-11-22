@@ -3,9 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/drawable-v24/ic_baseline_calendar_today_24.xml" value="0.313" />
+        <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/drawable/tab_menu_gift.xml" value="0.313" />
+        <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/drawable/tab_menu_home.xml" value="0.313" />
+        <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_login.xml" value="0.1936725096194955" />
         <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_main_test.xml" value="0.1" />
         <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_profile.xml" value="0.13790221479314668" />
         <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_seatview.xml" value="0.13790221479314668" />
+        <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_table.xml" value="0.18676337262012693" />
+        <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_table_h.xml" value="0.1936725096194955" />
+        <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_table_s.xml" value="0.1936725096194955" />
+        <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_table_sqr.xml" value="0.12056434373663959" />
+        <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_table_v.xml" value="0.33" />
+        <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_tables/layout/activity_tables_test.xml" value="0.1936725096194955" />
         <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
       </map>

@@ -18,8 +18,8 @@ public class TableActivity extends Activity {
         super.onCreate(savedInstanceState);
         // 隐藏标题栏
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_table);
-        testTV = findViewById(R.id.testView);
+        //setContentView(R.layout.activity_table_v);
+
         Intent intent = getIntent();
         Bundle infoBundle = intent.getExtras();
         // 在res中获取
@@ -29,9 +29,15 @@ public class TableActivity extends Activity {
                 infoBundle.getString("startIndex"));
         seatNumber = Integer.parseInt(
                 infoBundle.getString("seatNumber"));;
-        type = typeArray[Integer.parseInt(infoBundle.getString("type"))];
+        type = infoBundle.getString("type");
+        if(type.equals("0"))
+            setContentView(R.layout.activity_table_v);
+        else if(type.equals("1"))
+            setContentView(R.layout.activity_table_h);
+        else
+            setContentView(R.layout.activity_table_sqr);
+        testTV = findViewById(R.id.testView);
         testTV.setText(type + "," + startIndex + ", " + seatNumber);
-
-
     }
+
 }
