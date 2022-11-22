@@ -22,12 +22,8 @@ public class ItemExchangeActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView) ;
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2)) ;
-//        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(linearLayoutManager);
         adapter = new RecyclerViewAdapter();
         recyclerView.setAdapter(adapter);
-
     }
 
     private void getData(){

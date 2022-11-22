@@ -62,7 +62,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return listData.size();
     }
 
-    void addItem(DataItem data) {
+    public void addItem(DataItem data) {
         // get item from database
         listData.add(data);
     }
