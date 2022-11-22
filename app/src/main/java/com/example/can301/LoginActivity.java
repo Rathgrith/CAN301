@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
     private String success = "Login success.";
     private String fail = "Login failed";
     private String l2durl = "file:///android_asset/www/l2d.html";
-    private TextView rBtn,title;
+    private TextView rBtn, title;
     private WebView mWebview;
     private boolean loginFlag;
     private ScrollView scrollView;
@@ -58,8 +58,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences sharedPref = getSharedPreferences("config",Context.MODE_PRIVATE);
-        if (sharedPref.getBoolean("isLoggedIn",false)) {
+        SharedPreferences sharedPref = getSharedPreferences("config", Context.MODE_PRIVATE);
+        if (sharedPref.getBoolean("isLoggedIn", false)) {
             jumpToMain();
         }
 //        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -82,7 +82,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         rBtn.setOnClickListener(this::onClickRegisterLink);
 
 
-
         // try to prevent softkeyboard from hide button
         inputEmail.setOnFocusChangeListener(this);
         inputPassword.setOnFocusChangeListener(this);
@@ -96,14 +95,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
 
         super.onStart();
         final int[] times = {1};
-        ViewTreeObserver observer=scrollView.getViewTreeObserver();
+        ViewTreeObserver observer = scrollView.getViewTreeObserver();
 
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 
             @Override
 
             public void onGlobalLayout() {
-                if(times[0] ==1){
+                if (times[0] == 1) {
 //                    Log.d(TAG, "test if once only");
                     rBtn.getLocationOnScreen(location);
                     times[0]++;
@@ -116,7 +115,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
 
     }
 
-    private void loadL2d(String url){
+    private void loadL2d(String url) {
         mWebview.getSettings().setJavaScriptEnabled(true);
         mWebview.getSettings().setAllowFileAccess(true);
         mWebview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
@@ -125,34 +124,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         mWebview.loadUrl(url);
     }
 
-    private boolean checkEditText(EditText editText){
+    private boolean checkEditText(EditText editText) {
         String toCheck = editText.getText().toString();
         int length = toCheck.length();
-        if(length<6){
-            Toast.makeText(this,"Ensure password longer than 6",Toast.LENGTH_SHORT).show();
+        if (length < 6) {
+            Toast.makeText(this, "Ensure password longer than 6", Toast.LENGTH_SHORT).show();
             return false;
         }
         boolean containNum = false;
         boolean containLetter = false;
         for (int i = 0; i < length; i++) {
-            if(Character.isDigit(toCheck.charAt(i))){
+            if (Character.isDigit(toCheck.charAt(i))) {
                 containNum = true;
-            }else{
+            } else {
                 containLetter = true;
             }
-            if(containNum && containLetter){
+            if (containNum && containLetter) {
                 return true;
             }
         }
-        if(!(containNum && containLetter)){
-            Toast.makeText(this,"Ensure password contains both letter and word",Toast.LENGTH_SHORT).show();
+        if (!(containNum && containLetter)) {
+            Toast.makeText(this, "Ensure password contains both letter and word", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
 
 
-    private void onClick(View view){
+    private void onClick(View view) {
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
         // System.out.println(validate(email));
@@ -163,38 +162,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         if(!checkEditText(inputPassword)){
             return;
         }*/
-        HashMap<String,String> hashMap = new HashMap<>();
-        hashMap.put("email", "zihan.lyu18@studet.xjtlu.edu.cn" );
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("email", "zihan.lyu18@studet.xjtlu.edu.cn");
         hashMap.put("password", "123456a");
         //Log.d(TAG, "Before: " + hashMap);
-        OkHttpUtils.getSoleInstance().doPostForm(backendUrl+"/user/login", new NetAgent() {
-        //OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:8080/user/login", new NetAgent() {
+        OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/user/login", new NetAgent() {
+            //OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:8080/user/login", new NetAgent() {
             @Override
             public void onSuccess(String result) {
-                Map<String,String> map =  FastJsonUtils.stringToCollect(result);
+                Map<String, String> map = FastJsonUtils.stringToCollect(result);
                 String isSuccess = map.get("isSuccess");
                 String message = map.get("message");
                 //System.out.println();
-                try{
-                    if(isSuccess.equals("200")){
+                try {
+                    if (isSuccess.equals("200")) {
+                        // save email for profile
+                        onSave();
                         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                        SharedPreferences sharedPref = getSharedPreferences("config",Context.MODE_PRIVATE);
+                        SharedPreferences sharedPref = getSharedPreferences("config", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putBoolean(String.valueOf("isLoggedIn"), true);
-                        editor.putString(String.valueOf(R.string.checkEmail),email);
+                        editor.putString(String.valueOf(R.string.checkEmail), email);
                         editor.apply();
                         jumpToMain();
-                    }
-                    else{
+                    } else {
                         Toast toastCenter = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
-                        toastCenter.setGravity(Gravity.CENTER,0,0);
+                        toastCenter.setGravity(Gravity.CENTER, 0, 0);
                         toastCenter.show();
                     }
-                }
-                catch (Exception e){
-                        Toast toastCenter = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
-                        toastCenter.setGravity(Gravity.CENTER,0,0);
-                        toastCenter.show();
+                } catch (Exception e) {
+                    Toast toastCenter = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+                    toastCenter.setGravity(Gravity.CENTER, 0, 0);
+                    toastCenter.show();
                 }
             }
 
@@ -202,79 +201,78 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
             public void onError(Exception e) {
                 e.printStackTrace();
                 Toast center = Toast.makeText(getApplicationContext(), "network failure", Toast.LENGTH_SHORT);
-                center.setGravity(Gravity.CENTER,0,0);
-                Log.d(TAG, "Beforeafter: " );
+                center.setGravity(Gravity.CENTER, 0, 0);
+                Log.d(TAG, "Beforeafter: ");
                 center.show();
             }
-        },hashMap,this);
+        }, hashMap, this);
 
     }
 
-    private void onClickRegisterLink(View view){
+    private void onClickRegisterLink(View view) {
         jumpToRegister();
     }
 
     //跳转方法
-    private void jumpToMain(){
+    private void jumpToMain() {
         Intent intent = null;
         //setContentView(R.string.login_flag);
         intent = new Intent(this, mainTestActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
-    private void jumpToRegister(){
+    private void jumpToRegister() {
         Intent intent = null;
         //setContentView(R.string.login_flag);
         intent = new Intent(this, RegisterActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
-        Log.d(TAG, "onFocusChange: "+hasFocus);
-            if(hasFocus){
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
+        Log.d(TAG, "onFocusChange: " + hasFocus);
+        if (hasFocus) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    scrollView.getWindowVisibleDisplayFrame(rect);
+                    int current = rect.bottom;
+                    while (current == noKeyBoardHeight) {
                         scrollView.getWindowVisibleDisplayFrame(rect);
-                        int current = rect.bottom;
-                        while (current==noKeyBoardHeight){
-                            scrollView.getWindowVisibleDisplayFrame(rect);
-                            current = rect.bottom;
-                        }
-//                        in case hide half
-                        int safeMargin = 40;
-                        int scrollHeight = (location[1] + safeMargin + rBtn.getHeight()) - current;
-//                        Log.d(TAG, "run: "+location[1]);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                scrollView.scrollTo(0, (int)scrollHeight);
-                            }
-                        });
-
+                        current = rect.bottom;
                     }
-                }).start();
+//                        in case hide half
+                    int safeMargin = 40;
+                    int scrollHeight = (location[1] + safeMargin + rBtn.getHeight()) - current;
+//                        Log.d(TAG, "run: "+location[1]);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            scrollView.scrollTo(0, (int) scrollHeight);
+                        }
+                    });
+
+                }
+            }).start();
 
 //                Log.d(TAG, "onFocusrb1"+b1);
 
 
-
-            }
-
         }
 
     }
+
+
     // saving info in shared preferences file for displaying it on the profile
-//    public void onSave(){
-//        // retrieve info from email edit field
-//        String email = inputEmail.getText().toString();
-//
-//        // shared preferences save info
-//        SharedPreferences mypref = getSharedPreferences("login", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = mypref.edit();
-//        editor.putString("keyemail", email);
-//        editor.commit();
-//    }
+    public void onSave() {
+        // retrieve info from email edit field
+        String email = inputEmail.getText().toString();
+        // shared preferences save info
+        SharedPreferences mypref = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences.Editor editor = mypref.edit();
+        editor.putString("keyemail", email);
+        editor.commit();
+    }
+}

@@ -36,6 +36,7 @@ public class profileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initVariable();
+        readEmail();
     }
 
     //    @Override
@@ -49,6 +50,12 @@ public class profileFragment extends Fragment {
         nicknameTV = (TextView) getActivity().findViewById(R.id.nicknameTV);
         logOut = getActivity().findViewById(R.id.btn_log_out);
         logOut.setOnClickListener(this::onClick);
+    }
+
+    public void readEmail(){
+        SharedPreferences mypref = root.getContext().getSharedPreferences("login", root.getContext().MODE_PRIVATE);
+        String email = mypref.getString("keyemail", "User Email");
+        emailTV.setText(email);
     }
 
     private void onClick(View view) {
