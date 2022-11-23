@@ -1,8 +1,6 @@
 package com.example.can301;
 
 import static android.content.ContentValues.TAG;
-import static com.example.can301.R.string.checkLogged;
-import static com.example.can301.utilities.ValidateUtil.validate;
 
 import android.content.Context;
 import android.content.Intent;
@@ -77,7 +75,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         title = findViewById(R.id.caption1);
         scrollView = findViewById(R.id.out_est);
         finalShow = lBtn;
-
         this.loadL2d(l2durl);
 
 
@@ -179,6 +176,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
                 //System.out.println();
                 try {
                     if (isSuccess.equals("200")) {
+
+                        // save email for profile
+                        onSave();
+
                         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                         SharedPreferences sharedPref = getSharedPreferences("config", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
@@ -219,7 +220,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
     private void jumpToMain() {
         Intent intent = null;
         //setContentView(R.string.login_flag);
-        intent = new Intent(this, MainActivity.class);
+
+        intent = new Intent(this, mainTestActivity.class);
+
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
@@ -268,7 +271,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
 
 
     // saving info in shared preferences file for displaying it on the profile
-    public void onSave(){
+
+    public void onSave() {
         // retrieve info from email edit field
         String email = inputEmail.getText().toString();
 
@@ -276,6 +280,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         SharedPreferences mypref = getSharedPreferences("login", MODE_PRIVATE);
         SharedPreferences.Editor editor = mypref.edit();
         editor.putString("keyemail", email);
-        editor.apply();
+        editor.commit();
+
     }
 }

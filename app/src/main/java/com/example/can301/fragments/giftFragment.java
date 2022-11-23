@@ -1,31 +1,40 @@
-package com.example.can301;
+package com.example.can301.fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-
+import com.example.can301.R;
+import com.example.can301.RecyclerViewAdapter;
 import com.example.can301.customizedClass.DataItem;
 
-public class ItemExchangeActivity extends AppCompatActivity {
+public class giftFragment extends Fragment {
+    private RecyclerView recyclerView;
     RecyclerViewAdapter adapter;
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_itemexchange);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_gift,container,false);
+        recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(root.getContext(), 2)) ;
         init();
         getData();
+        return root;
     }
 
     private void init(){
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView) ;
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)) ;
 
         adapter = new RecyclerViewAdapter();
         recyclerView.setAdapter(adapter);
-
     }
 
     private void getData(){
@@ -41,5 +50,4 @@ public class ItemExchangeActivity extends AppCompatActivity {
         }
 
     }
-
 }

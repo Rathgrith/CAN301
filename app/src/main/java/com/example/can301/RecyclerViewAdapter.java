@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+
 import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +49,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         //"YES" Button Click
                         Toast.makeText(view.getContext(), "YES Button Click", Toast.LENGTH_LONG).show();
                         selectedPrice = listData.get(position).getPrice();
+
+//                        System.out.println("------------Selected Price------------");
+//                        System.out.println(selectedPrice);
+
                         //Save Selected Price in SharedPreferences Im not so sure:(
                         SharedPreferences mypref = view.getContext().getSharedPreferences("price", view.getContext().MODE_PRIVATE);
                         SharedPreferences.Editor editor = mypref.edit();
@@ -72,7 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return listData.size();
     }
 
-    void addItem(DataItem data) {
+    public void addItem(DataItem data) {
         // get item from database
         listData.add(data);
     }
