@@ -125,7 +125,10 @@ public class homeFragment extends Fragment {
                     else if(seatStatus[i]==1){
                         seat.setImageDrawable(root.getResources().getDrawable(R.drawable.greenseat));
                     }
-                    else seat.setImageDrawable(root.getResources().getDrawable(R.drawable.grayseat));
+                    else if(seatStatus[i]==2){
+                        seat.setImageDrawable(root.getResources().getDrawable(R.drawable.grayseat));
+                    }else
+                        seat.setImageDrawable(root.getResources().getDrawable(R.drawable.grayseat));
                     i++;
                 }
             }
@@ -191,8 +194,8 @@ public class homeFragment extends Fragment {
         intent = new Intent(requireContext(), TableActivity.class);
         Bundle tableBundle = new Bundle();
         //请求int[] 16-32位
-        //数组起始下标为16，对应主页元素seat15
-        tableBundle.putString("startIndex", "16");
+        //数组起始下标为16，对应主页元素seat32
+        tableBundle.putString("startIndex", "15");
         //长度为16
         tableBundle.putString("seatNumber", "16");
         tableBundle.putString("type", "0");
@@ -206,7 +209,7 @@ public class homeFragment extends Fragment {
         Bundle tableBundle = new Bundle();
         //请求int[] 32-42位
         //数组起始下标为32，对应主页元素seat33
-        tableBundle.putString("startIndex", "32");
+        tableBundle.putString("startIndex", "31");
         //长度为10
         tableBundle.putString("seatNumber", "10");
         tableBundle.putString("type", "1");
@@ -220,7 +223,7 @@ public class homeFragment extends Fragment {
         Bundle tableBundle = new Bundle();
         //请求int[] 42-52位
         //数组起始下标为42，对应主页元素seat43
-        tableBundle.putString("startIndex", "42");
+        tableBundle.putString("startIndex", "41");
         //长度为10
         tableBundle.putString("seatNumber", "10");
         tableBundle.putString("type", "1");
@@ -234,7 +237,7 @@ public class homeFragment extends Fragment {
         Bundle tableBundle = new Bundle();
         //请求int[] 52-56位
         //数组起始下标为52，对应主页元素seat53
-        tableBundle.putString("startIndex", "52");
+        tableBundle.putString("startIndex", "51");
         //长度为4
         tableBundle.putString("seatNumber", "4");
         tableBundle.putString("type", "2");
@@ -248,7 +251,7 @@ public class homeFragment extends Fragment {
         Bundle tableBundle = new Bundle();
         //请求int[] 56-60位
         //数组起始下标为56，对应主页元素seat55
-        tableBundle.putString("startIndex", "56");
+        tableBundle.putString("startIndex", "55");
         //长度为4
         tableBundle.putString("seatNumber", "4");
         tableBundle.putString("type", "2");
