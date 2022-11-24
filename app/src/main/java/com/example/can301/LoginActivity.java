@@ -279,7 +279,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         // shared preferences save info
         SharedPreferences mypref = getSharedPreferences("login", MODE_PRIVATE);
         SharedPreferences.Editor editor = mypref.edit();
-        editor.putString("email", email);
+
+        editor.putString("email", "zihan.lyu18@studet.xjtlu.edu.cn");
         editor.apply();
 
     }

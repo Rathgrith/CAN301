@@ -20,9 +20,14 @@
         <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_table_sqr.xml" value="0.12056434373663959" />
         <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_table_v.xml" value="0.33" />
         <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/activity_tables/layout/activity_tables_test.xml" value="0.1936725096194955" />
+        <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/fragment_gift.xml" value="0.1" />
         <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+<<<<<<< HEAD
         <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
 >>>>>>> 825b741173b45d1ab5df768574e9291a03b1c417
+=======
+        <entry key="..\:/Users/50502/AndroidStudioProjects/CAN301/app/src/main/res/layout/fragment_profile.xml" value="0.41739130434782606" />
+>>>>>>> 1c0bf29d79d28aac9ec5e6f1506a8205e9c36420
       </map>
     </option>
   </component>

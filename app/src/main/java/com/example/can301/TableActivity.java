@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.example.can301.net.NetAgent;
 import com.example.can301.net.OkHttpUtils;
@@ -25,9 +28,10 @@ public class TableActivity extends Activity {
     private ImageView[] seatList;
     private int[] seatStatus;
     private String backendUrl;
-    private int taken;
-    private int ava;
-    private int unk;
+    private static int taken;
+    private static int ava;
+    private static int unk;
+    private TextView tableStats;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +58,11 @@ public class TableActivity extends Activity {
             setContentView(R.layout.activity_table_sqr);
         testTV = findViewById(R.id.testView);
         testTV.setText(type + "," + startIndex + ", " + seatNumber);
+        tableStats = findViewById(R.id.tableStats);
         seatList = new ImageView[seatNumber];
+        taken = 0;
+        ava = 0;
+        unk = 0;
         findSeat();
         //
         try{
@@ -63,6 +71,7 @@ public class TableActivity extends Activity {
         catch (Exception e){
             e.printStackTrace();
         }
+        assignSeatBtn(seatList);
     }
 
     private void findSeat(){
@@ -79,9 +88,22 @@ public class TableActivity extends Activity {
             j++;
         }
     }
+
+    private void assignSeatBtn(@NonNull ImageView[] seatList){
+        for (ImageView seat: seatList) {
+            seat.setOnClickListener(this::onSeatClick);
+        }
+    }
+
+    private void onSeatClick(View view) {
+        Toast toastCenter = Toast.makeText(getApplicationContext(), "seat clicked", Toast.LENGTH_SHORT);
+        toastCenter.setGravity(Gravity.CENTER, 0, 0);
+        toastCenter.show();
+    }
+
+
     private void getSeatStatus(){
         HashMap hashMap = new HashMap();
-
         OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/seat/listseat", new NetAgent() {
             @Override
             public void onSuccess(String result) {
@@ -107,18 +129,23 @@ public class TableActivity extends Activity {
                 int bias=0;
                 for (ImageView seat: seatList) {
                     if(seatStatus[startIndex+bias]==0){
-                        seat.setImageDrawable(getDrawable(R.drawable.redseat));
                         taken++;
+                        seat.setImageDrawable(getDrawable(R.drawable.redseat));
                     }
                     else if(seatStatus[startIndex+bias]==1){
+                        ava++;
                         seat.setImageDrawable(getDrawable(R.drawable.greenseat));
                     }
                     else if(seatStatus[startIndex+bias]==2){
+                        unk++;
                         seat.setImageDrawable(getDrawable(R.drawable.grayseat));
-                    }else
+                    }else{
                         seat.setImageDrawable(getDrawable(R.drawable.grayseat));
+                        unk++;
+                    }
                     bias++;
                 }
+                tableStats.setText("// "+ taken + " taken, " + ava + " available, "+ unk +" unknown. //");
             }
             @Override
             public void onError(Exception e) {
@@ -130,6 +157,5 @@ public class TableActivity extends Activity {
         },hashMap,this);
 
     }
-
 
 }

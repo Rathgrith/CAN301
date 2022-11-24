@@ -826,14 +826,15 @@
 
 
             </LinearLayout>
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:alpha="0.8"
                 android:layout_below="@+id/squareTable2"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
+                android:alpha="0.8"
                 android:padding="45dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/xjtlulogo" />

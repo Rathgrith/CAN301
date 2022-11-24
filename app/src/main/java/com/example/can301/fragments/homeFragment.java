@@ -70,12 +70,8 @@ public class homeFragment extends Fragment {
         profileBtn = root.findViewById(R.id.floatingActionButton);
         Resources res = getResources();
         backendUrl = "http://47.94.44.163:8080";
-        //loadWeather(weatherurl);
         findSeat();
         getSeatStatus();
-        // clearSeat();
-        // System.out.println("SeatList" + seatList.toString());
-
         profileBtn.setOnClickListener(this::onClick);
         flushbtn.setOnClickListener(this::flush);
         table1Btn.setOnClickListener(this::jumpToTable1);
@@ -94,7 +90,7 @@ public class homeFragment extends Fragment {
 
     private void getSeatStatus(){
         HashMap hashMap = new HashMap();
-        System.out.println(getActivity());
+        //System.out.println(getActivity());
         OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/seat/listseat", new NetAgent() {
             @Override
             public void onSuccess(String result) {
