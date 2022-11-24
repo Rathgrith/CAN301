@@ -8,26 +8,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.can301.R;
-import com.example.can301.customizedClass.DataItem;
 
 public class ViewHolder extends  RecyclerView.ViewHolder{
-    TextView itemnameTV;
-    ImageView itempicIV;
+    TextView itemNameTV;
+    ImageView itemPicIV;
     TextView priceTV;
 
 
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        itempicIV = itemView.findViewById(R.id.itempicIV);
-        itemnameTV = itemView.findViewById(R.id.itemnameTV);
+        itemPicIV = itemView.findViewById(R.id.itempicIV);
+        itemNameTV = itemView.findViewById(R.id.itemnameTV);
         priceTV = itemView.findViewById(R.id.priceTV);
 
     }
 
     public void onBind(DataItem data){
-        itemnameTV.setText(data.getTitle());
-        itempicIV.setImageResource(data.getImage());
+        itemNameTV.setText(data.getTitle());
+        itemPicIV.setImageResource(data.getImage());
         priceTV.setText(Integer.toString(data.getPrice()));
     }
 }
