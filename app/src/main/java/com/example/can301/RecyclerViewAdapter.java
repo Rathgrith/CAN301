@@ -4,12 +4,14 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.can301.customizedClass.DataItem;
@@ -22,12 +24,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     // list for adapter
     private ArrayList<DataItem> listData = new ArrayList<>();
     int selectedPrice;
+    private LocalBroadcastManager localBroadcastManager;
+    private XXListener mXXListener;
+    private static String b = "0";
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_itemexchange, parent, false);
         return new ViewHolder(view);
+    }
+
+    public void setOnXXClickListener (XXListener  XXListener) {
+        this.mXXListener = XXListener;
     }
 
     @Override
@@ -52,7 +61,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         SharedPreferences mypref = view.getContext().getSharedPreferences("price", view.getContext().MODE_PRIVATE);
                         SharedPreferences.Editor editor = mypref.edit();
                         editor.putString("selectedPrice", String.valueOf(selectedPrice));
-                        editor.apply();
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("selectedPrice", mypref.getString("selectedPrice", ""));
+                        editor.commit();
+                        b = mypref.getString("selectedPrice", "");
+                        mXXListener.onXXClick(Integer.parseInt(b));
                     }
                 });
                 builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -67,6 +81,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
         });
     }
+
+    public interface XXListener {
+        public void onXXClick(int b);
+    }
+
+
 
     @Override
     public int getItemCount() {
