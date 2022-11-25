@@ -109,30 +109,35 @@ public class TableActivity extends Activity {
                 localID = i;
             }
         }
-        if(status == 0){
-            seatList[localID].setImageResource(R.drawable.grayseat);
-            //当前status设为2，转灰色
-            status = 2;
-            // 这里写上，连后端设置status
-            // 解除下面注释可以随时刷新
-            // getSeatStatus();
-        }
-        else if(status == 1) {
-            seatList[localID].setImageResource(R.drawable.redseat);
-            //当前status设为2，转红色
-            status = 0;
-            // 这里写上，连后端设置status
-            // 解除下面注释可以随时刷新
-            // getSeatStatus();
-        }
-        else if(status == 2){
-            seatList[localID].setImageResource(R.drawable.greenseat);
-            //当前status设为2，转绿色
-            status = 1;
-            // 这里写上，连后端设置status
-            // 解除下面注释可以随时刷新
-            getSeatStatus();
-        }
+        changeSeatStatus(localID+1,999);
+        getSeatStatus();
+//        if(status == 0){
+//            seatList[localID].setImageResource(R.drawable.grayseat);
+//            //当前status设为2，转灰色
+//            status = 2;
+//
+//            // 这里写上，连后端设置status
+//            // 解除下面注释可以随时刷新
+//            getSeatStatus();
+//        }
+//        else if(status == 1) {
+//            seatList[localID].setImageResource(R.drawable.redseat);
+//            //当前status设为2，转红色
+//            status = 0;
+//            changeSeatStatus(localID,999);
+//            // 这里写上，连后端设置status
+//            // 解除下面注释可以随时刷新
+//            getSeatStatus();
+//        }
+//        else if(status == 2){
+//            seatList[localID].setImageResource(R.drawable.greenseat);
+//            //当前status设为2，转绿色
+//            status = 1;
+//            changeSeatStatus(localID,999);
+//            // 这里写上，连后端设置status
+//            // 解除下面注释可以随时刷新
+//            getSeatStatus();
+//        }
         //System.out.println("color = " + greenID);
         //Toast toastCenter = Toast.makeText(getApplicationContext(), "seat in list index = " + specSeatIdx, Toast.LENGTH_SHORT);
         //toastCenter.setGravity(Gravity.CENTER, 0, 0);
@@ -198,5 +203,36 @@ public class TableActivity extends Activity {
         },hashMap,this);
 
     }
+    private void changeSeatStatus(int id,int qrresult){
+
+        HashMap hashMap = new HashMap();
+        hashMap.put("seatIndex",String.valueOf(id));
+        hashMap.put("qrresult",String.valueOf(qrresult));
+        OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/seat/changeSteatStatus", new NetAgent() {
+            @Override
+            public void onSuccess(String result) {
+                Map<String, String> map = FastJsonUtils.stringToCollect(result);
+                String status = map.get("status");
+                if (status.equals("200")) {
+                    Toast.makeText(getApplicationContext(), "Seat status changed", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast toastCenter = Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_SHORT);
+                    toastCenter.setGravity(Gravity.CENTER, 0, 0);
+                    toastCenter.show();
+                }
+                getSeatStatus();
+            }
+            @Override
+            public void onError(Exception e) {
+                e.printStackTrace();
+                Toast center = Toast.makeText(getApplicationContext(), "network failure", Toast.LENGTH_SHORT);
+                center.setGravity(Gravity.CENTER, 0, 0);
+                center.show();
+            }
+        },hashMap,this);
+
+    }
+
 
 }
