@@ -72,6 +72,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         mWebview = findViewById(R.id.l2d);
         inputEmail = findViewById(R.id.email);
         inputPassword = findViewById(R.id.password);
+        inputEmail.setText("zihan.lyu18@studet.xjtlu.edu.cn");
+        inputPassword.setText("123456a");
         title = findViewById(R.id.caption1);
         scrollView = findViewById(R.id.out_est);
         finalShow = lBtn;
@@ -163,8 +165,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
             return;
         }*/
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("email", "zihan.lyu18@studet.xjtlu.edu.cn");
-        hashMap.put("password", "123456a");
+        hashMap.put("email", email);
+        hashMap.put("password", password);
         //Log.d(TAG, "Before: " + hashMap);
         OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/user/login", new NetAgent() {
             //OkHttpUtils.getSoleInstance().doPostForm("http://10.0.2.2:8080/user/login", new NetAgent() {
@@ -272,7 +274,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         // shared preferences save info
         SharedPreferences mypref = getSharedPreferences("login", MODE_PRIVATE);
         SharedPreferences.Editor editor = mypref.edit();
-        editor.putString("email", "zihan.lyu18@studet.xjtlu.edu.cn");
+        editor.putString("email", inputEmail.getText().toString());
         editor.apply();
     }
 }
