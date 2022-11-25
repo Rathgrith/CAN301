@@ -28,6 +28,13 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
+            android:name=".QRcode"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>

@@ -43,7 +43,6 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="20dp"
-            android:text="100"
             android:textColor="@color/white"
             android:layout_below="@id/storeTV"
             android:textSize="20dp" />

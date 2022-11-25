@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.can301.QRcode;
 import com.example.can301.R;
 import com.example.can301.TableActivity;
 import com.example.can301.net.NetAgent;
@@ -163,10 +164,10 @@ public class homeFragment extends Fragment {
     }
 
     private void jumpToProfile(){
-        //Intent intent = null;
-        //intent = new Intent(requireContext(), profileFragment.class);
-        //startActivity(intent);
-        Toast center = Toast.makeText(getActivity().getApplicationContext(), "没写", Toast.LENGTH_SHORT);
+        Intent intent = null;
+        intent = new Intent(requireContext(), QRcode.class);
+        startActivity(intent);
+        Toast center = Toast.makeText(getActivity().getApplicationContext(), "扫码", Toast.LENGTH_SHORT);
         center.setGravity(Gravity.CENTER, 0, 0);
         center.show();
     }
@@ -191,7 +192,7 @@ public class homeFragment extends Fragment {
         Bundle tableBundle = new Bundle();
         //请求int[] 16-32位
         //数组起始下标为16，对应主页元素seat32
-        tableBundle.putString("startIndex", "15");
+        tableBundle.putString("startIndex", "16");
         //长度为16
         tableBundle.putString("seatNumber", "16");
         tableBundle.putString("type", "0");
@@ -205,7 +206,7 @@ public class homeFragment extends Fragment {
         Bundle tableBundle = new Bundle();
         //请求int[] 32-42位
         //数组起始下标为32，对应主页元素seat33
-        tableBundle.putString("startIndex", "31");
+        tableBundle.putString("startIndex", "32");
         //长度为10
         tableBundle.putString("seatNumber", "10");
         tableBundle.putString("type", "1");
@@ -219,7 +220,7 @@ public class homeFragment extends Fragment {
         Bundle tableBundle = new Bundle();
         //请求int[] 42-52位
         //数组起始下标为42，对应主页元素seat43
-        tableBundle.putString("startIndex", "41");
+        tableBundle.putString("startIndex", "42");
         //长度为10
         tableBundle.putString("seatNumber", "10");
         tableBundle.putString("type", "1");
@@ -233,7 +234,7 @@ public class homeFragment extends Fragment {
         Bundle tableBundle = new Bundle();
         //请求int[] 52-56位
         //数组起始下标为52，对应主页元素seat53
-        tableBundle.putString("startIndex", "51");
+        tableBundle.putString("startIndex", "52");
         //长度为4
         tableBundle.putString("seatNumber", "4");
         tableBundle.putString("type", "2");
@@ -247,11 +248,16 @@ public class homeFragment extends Fragment {
         Bundle tableBundle = new Bundle();
         //请求int[] 56-60位
         //数组起始下标为56，对应主页元素seat55
-        tableBundle.putString("startIndex", "55");
+        tableBundle.putString("startIndex", "56");
         //长度为4
         tableBundle.putString("seatNumber", "4");
         tableBundle.putString("type", "2");
         intent.putExtras(tableBundle);
         startActivity(intent);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getSeatStatus();
     }
 }

@@ -1,9 +1,12 @@
 package com.example.can301.fragments;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +21,8 @@ import com.example.can301.customizedClass.DataItem;
 public class giftFragment extends Fragment {
     private RecyclerView recyclerView;
     RecyclerViewAdapter adapter;
+    public int cash = 100000;//this need data from database. The cash of users.
+    TextView Cash;
 
     @Nullable
     @Override
@@ -25,6 +30,8 @@ public class giftFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_gift,container,false);
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(root.getContext(), 2)) ;
+        Cash = (TextView) root.findViewById(R.id.cashTV);
+        Cash.setText("Cash : " + cash );
         init();
         getData();
         return root;
@@ -35,6 +42,21 @@ public class giftFragment extends Fragment {
 
         adapter = new RecyclerViewAdapter();
         recyclerView.setAdapter(adapter);
+        adapter.setOnXXClickListener (new RecyclerViewAdapter.XXListener(){
+            @Override
+            public void onXXClick(int b) {
+                if(cash >= b){
+                    cash = cash - b;
+                    Cash.setText("Cash : " + cash);
+                }
+                else{
+                    Toast center = Toast.makeText(getActivity().getApplicationContext(), "You don't have enough cash", Toast.LENGTH_SHORT);
+                    center.setGravity(Gravity.CENTER, 0, 0);
+                    center.show();
+                }
+            }
+
+        });
     }
 
     private void getData(){
