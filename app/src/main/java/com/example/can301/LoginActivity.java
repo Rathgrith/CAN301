@@ -2,6 +2,8 @@ package com.example.can301;
 
 import static android.content.ContentValues.TAG;
 
+import static com.example.can301.utilities.ValidateUtil.validate;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -157,13 +159,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
         // System.out.println(validate(email));
-       /* if(!validate(email)){
+        if(!validate(email)){
             Toast.makeText(getApplicationContext(), "incorrect email!", Toast.LENGTH_SHORT).show();
             return;
         }
         if(!checkEditText(inputPassword)){
             return;
-        }*/
+        }
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("email", email);
         hashMap.put("password", password);

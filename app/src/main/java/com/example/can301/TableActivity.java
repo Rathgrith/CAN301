@@ -109,7 +109,7 @@ public class TableActivity extends Activity {
                 localID = i;
             }
         }
-        changeSeatStatus(localID+1,999);
+        changeSeatStatus(specSeatIdx+1,999);
         getSeatStatus();
 //        if(status == 0){
 //            seatList[localID].setImageResource(R.drawable.grayseat);
