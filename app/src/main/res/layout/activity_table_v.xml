@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -123,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -292,10 +296,10 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="commit Change"
+                android:text="Check in"
                 android:textSize="15dp"
-                android:layout_marginBottom="50dp"
+                android:textColor="@color/white"
+                android:layout_marginBottom="30dp"
                 android:backgroundTint="@color/teal_700"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="15dp"
@@ -304,3 +308,4 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
+</ScrollView>

@@ -1,20 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TableActivity">
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:background="@mipmap/pache"
+        android:orientation="vertical"
 
-    <TextView
-        android:id="@+id/testView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_height="match_parent"
+        tools:context=".TableActivity">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="horizontal" />
-</LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="0dp"
+            android:alpha="0.7"
+            android:background="@color/navy"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:padding="14dp"
+                android:text="3F-North"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                />
+
+            <TextView
+                android:id="@+id/testView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:text="Table spec"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp"
+            android:layout_marginTop="0dp"
+            app:cardBackgroundColor="#95FFFFFF"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp">
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#00FFFFFF">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:src="@drawable/redseat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginTop="15dp"
+                    android:text=" Taken" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="155dp"
+                    android:src="@drawable/grayseat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="175dp"
+                    android:layout_marginTop="15dp"
+                    android:text=" Unknown" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="260dp"
+                    android:src="@drawable/greenseat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="280dp"
+                    android:layout_marginTop="15dp"
+                    android:text=" Available" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="90dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:id="@+id/tableStats"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textStyle="italic"
+                        android:text="// x taken, y available, z unknown. //"
+                        android:textSize="20dp"></TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/table1Sub1"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="#A9FFFFFF"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/seat1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/grayseat" />
+
+                        <ImageView
+                            android:id="@+id/seat2"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/grayseat" />
+
+                        <ImageView
+                            android:id="@+id/seat3"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/grayseat" />
+
+                        <ImageView
+                            android:id="@+id/seat4"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/grayseat" />
+
+
+                        <ImageView
+                            android:id="@+id/seat5"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:src="@drawable/grayseat" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/table1Sub2"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="#A9FFFFFF"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/seat6"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/grayseat" />
+
+                        <ImageView
+                            android:id="@+id/seat7"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/grayseat" />
+
+                        <ImageView
+                            android:id="@+id/seat8"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/grayseat" />
+
+                        <ImageView
+                            android:id="@+id/seat9"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/grayseat" />
+
+
+                        <ImageView
+                            android:id="@+id/seat10"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:src="@drawable/grayseat" />
+                    </LinearLayout>
+                </LinearLayout>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check in"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:backgroundTint="@color/teal_700"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="15dp"
+                    android:layout_centerHorizontal="true">
+                </Button>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>
