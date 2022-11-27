@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/navigation_white_noise"
+        android:icon="@drawable/tab_menu_white_noise"
+        android:title="WhiteNoise"/>
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/tab_menu_home"

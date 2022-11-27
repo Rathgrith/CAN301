@@ -6,6 +6,11 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
+        android:id="@+id/navigation_white_noise"
+        android:name="com.example.can301.fragments.whiteNoiseFragment"
+        tools:layout="@layout/fragment_white_noise" />
+
+    <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.can301.fragments.homeFragment"
         tools:layout="@layout/fragment_home" />
