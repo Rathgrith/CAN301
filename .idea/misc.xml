@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_itemexchange.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main_test.xml" value="0.13069908814589665" />
+        <entry key="app/src/main/res/layout/activity_table.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_tables/layout/fragment_3rd.xml" value="0.13753799392097266" />
+        <entry key="app/src/main/res/layout/activity_tables/layout/fragment_4th.xml" value="0.13753799392097266" />
+        <entry key="app/src/main/res/layout/activity_tables/layout/fragment_5th.xml" value="0.13703140830800406" />
+        <entry key="app/src/main/res/layout/activity_tables/layout/fragment_6th.xml" value="0.13703140830800406" />
+        <entry key="app/src/main/res/layout/fragment_gift.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/gift_item.xml" value="0.21510416666666668" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
 </project>

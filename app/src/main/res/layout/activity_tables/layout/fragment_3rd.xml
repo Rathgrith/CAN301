@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/p0"
+        android:orientation="vertical"
+        tools:context=".LoginActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="0dp"
+            android:alpha="0.7"
+            android:background="@color/navy"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:padding="14dp"
+                android:text="3F-North"
+                android:textColor="@color/white"
+                android:textSize="30dp" />
+
+            <!--webtianqi-->
+            <!--        <WebView-->
+            <!--            android:id="@+id/weather"-->
+            <!--            android:layout_width="40pt"-->
+            <!--            android:layout_height="20pt"-->
+            <!--            android:layout_alignParentTop="true"-->
+            <!--            android:layout_alignParentEnd="true"-->
+            <!--            android:layout_marginTop="9dp"-->
+            <!--            android:layout_marginEnd="159dp">-->
+
+
+            <!--        </WebView>-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:text="Temperature - 23°C"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="35dp"
+                android:text="Humidity - 40%"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp"
+            android:layout_marginTop="0dp"
+            app:cardBackgroundColor="#95FFFFFF"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#00FFFFFF">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:src="@drawable/redseat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginTop="15dp"
+                    android:text=" Taken" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="155dp"
+                    android:src="@drawable/grayseat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="175dp"
+                    android:layout_marginTop="15dp"
+                    android:text=" Unknown" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="260dp"
+                    android:src="@drawable/greenseat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="280dp"
+                    android:layout_marginTop="15dp"
+                    android:text=" Available" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp">
+
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/floatingActionButton2"
+                    android:layout_alignRight="@id/floatingActionButton2"
+                    android:layout_marginTop="15dp"
+                    android:clickable="true"
+                    app:backgroundTint="?attr/colorButtonNormal"
+                    app:srcCompat="@android:drawable/ic_menu_my_calendar"
+                    tools:ignore="MissingConstraints" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingActionButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/horizontalTable2"
+                    android:layout_alignRight="@id/horizontalTable2"
+                    android:layout_marginRight="-10dp"
+                    android:layout_marginTop="40dp"
+                    android:clickable="true"
+                    app:backgroundTint="?attr/colorButtonNormal"
+                    app:srcCompat="@android:drawable/ic_popup_sync" />
+
+                <ImageView
+                    android:id="@+id/squareTable1"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_alignLeft="@id/table1Sub2"
+                    android:layout_alignBottom="@id/table2Sub2"
+                    android:layout_marginLeft="70dp"
+                    android:alpha="0"
+                    android:src="@drawable/desk3"
+                    app:cardBackgroundColor="#72FFFFFF"
+                    app:cardCornerRadius="10dp" />
+
+                <LinearLayout
+                    android:id="@+id/sqrTable1Sub1"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_alignLeft="@id/squareTable1"
+                    android:layout_alignTop="@id/squareTable1"
+                    android:background="#A9FFFFFF"
+                    android:orientation="vertical">>
+
+                    <ImageView
+                        android:id="@+id/seat53"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat54"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="25dp"
+                        android:src="@drawable/grayseat" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sqrTable1Sub2"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_alignLeft="@id/squareTable1"
+                    android:layout_alignTop="@id/squareTable1"
+                    android:orientation="horizontal">>
+
+                    <ImageView
+                        android:id="@+id/seat55"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat56"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="25dp"
+                        android:src="@drawable/grayseat" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/squareTable2"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_alignLeft="@id/squareTable1"
+                    android:layout_alignBottom="@id/squareTable1"
+                    android:layout_marginLeft="90dp"
+                    android:alpha="0"
+                    android:src="@drawable/desk3" />
+
+                <LinearLayout
+                    android:id="@+id/sqrTable2Sub1"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_alignLeft="@id/squareTable2"
+                    android:layout_alignTop="@id/squareTable2"
+                    android:background="#A9FFFFFF"
+                    android:orientation="vertical">>
+
+                    <ImageView
+                        android:id="@+id/seat57"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat58"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="25dp"
+                        android:src="@drawable/grayseat" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sqrTable2Sub2"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_alignLeft="@id/squareTable2"
+                    android:layout_alignTop="@id/squareTable2"
+                    android:orientation="horizontal">>
+
+                    <ImageView
+                        android:id="@+id/seat59"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat60"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="25dp"
+                        android:src="@drawable/grayseat" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/horizontalTable2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="205dp"
+                    android:layout_marginTop="15dp"
+                    android:alpha="0"
+                    android:src="@drawable/desk1" />
+
+                <LinearLayout
+                    android:id="@+id/hor_table2Sub2"
+                    android:layout_width="148dp"
+                    android:layout_height="30dp"
+                    android:layout_alignLeft="@id/horizontalTable2"
+                    android:layout_alignTop="@id/horizontalTable2"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:background="#A9FFFFFF"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/seat43"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat44"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat45"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat46"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat47"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/hor_table2Sub1"
+                    android:layout_width="148dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/hor_table2Sub2"
+                    android:layout_alignLeft="@id/hor_table2Sub2"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:background="#A9FFFFFF"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/seat48"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat49"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat50"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat51"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat52"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/horizontalTable1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:alpha="0"
+                    android:src="@drawable/desk1"
+                    android:visibility="visible" />
+
+
+                <LinearLayout
+                    android:id="@+id/hor_table1Sub2"
+                    android:layout_width="148dp"
+                    android:layout_height="30dp"
+                    android:layout_alignLeft="@id/horizontalTable1"
+                    android:layout_alignTop="@id/horizontalTable1"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:background="#A9FFFFFF"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/seat33"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat34"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat35"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat36"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat37"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/hor_table1Sub1"
+                    android:layout_width="148dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/hor_table1Sub2"
+                    android:layout_alignLeft="@id/hor_table1Sub2"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:background="#A9FFFFFF"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/seat38"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat39"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat40"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat41"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat42"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/grayseat" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/table1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="90dp"
+                    android:alpha="0"
+                    android:src="@drawable/desk2" />
+
+
+                <LinearLayout
+                    android:id="@+id/table1Sub2"
+                    android:layout_width="40dp"
+                    android:layout_height="215dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="90dp"
+                    android:background="#A9FFFFFF"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/seat9"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat11"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat12"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat13"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat14"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat15"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat16"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/table1Sub1"
+                    android:layout_width="40dp"
+                    android:layout_height="215dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="90dp"
+                    android:background="#A9FFFFFF"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/seat1"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat5"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat6"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat7"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat8"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/table2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="325dp"
+                    android:alpha="0"
+                    android:src="@drawable/desk2" />
+
+                <LinearLayout
+                    android:id="@+id/table2Sub1"
+                    android:layout_width="40dp"
+                    android:layout_height="215dp"
+                    android:layout_below="@id/table1Sub1"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="84dp"
+                    android:background="#A9FFFFFF"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/seat17"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat18"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat19"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat20"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat21"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat22"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat23"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat24"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/table2Sub2"
+                    android:layout_width="40dp"
+                    android:layout_height="215dp"
+                    android:layout_below="@id/table1Sub2"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="30dp"
+                    android:background="#A9FFFFFF"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/seat25"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat26"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat27"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat28"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat29"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat30"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat31"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+                    <ImageView
+                        android:id="@+id/seat32"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/grayseat" />
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_below="@+id/squareTable2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:alpha="0.8"
+                    android:padding="45dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/xjtlulogo" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>
