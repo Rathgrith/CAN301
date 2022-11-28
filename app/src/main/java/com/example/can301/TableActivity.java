@@ -2,6 +2,7 @@ package com.example.can301;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -52,6 +53,7 @@ public class TableActivity extends Activity {
         seatNumber = Integer.parseInt(
                 infoBundle.getString("seatNumber"));;
         type = infoBundle.getString("type");
+
         if(type.equals("0"))
             setContentView(R.layout.activity_table_v);
         else if(type.equals("1"))
@@ -71,6 +73,7 @@ public class TableActivity extends Activity {
             e.printStackTrace();
         }
         assignSeatBtn(seatList);
+        readID();
     }
 
     private void findSeat(){
@@ -234,5 +237,10 @@ public class TableActivity extends Activity {
 
     }
 
+    public void readID(){
+        SharedPreferences mypref = getSharedPreferences("config", MODE_PRIVATE);
+        String id = mypref.getString("id", "id = x");
+        testTV.setText("id = " + id);
+    }
 
 }

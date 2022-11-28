@@ -32,6 +32,7 @@ public class profileFragment extends Fragment {
     private TextView emailTV, nicknameTV, cashTV, timeTV, dayTV;
     private Button logOut;
     private View root;
+    private String id;
     private String backendUrl = "http://47.94.44.163:8080";
     @Nullable
     @Override
@@ -61,7 +62,13 @@ public class profileFragment extends Fragment {
         cashTV = (TextView) root.findViewById(R.id.cashTV);
         logOut = getActivity().findViewById(R.id.btn_log_out);
         logOut.setOnClickListener(this::onClick);
+        readID();
 
+    }
+
+    public void readID(){
+        SharedPreferences mypref = root.getContext().getSharedPreferences("config", root.getContext().MODE_PRIVATE);
+        id = mypref.getString("id", "1");
     }
 
     public void readEmail(){
@@ -72,7 +79,7 @@ public class profileFragment extends Fragment {
 
     private void getCash(){
         HashMap hashMap = new HashMap();
-        hashMap.put("id","1");
+        hashMap.put("id",id);
         //System.out.println(getActivity());
         OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/user/querycash/", new NetAgent() {
             @Override
@@ -81,7 +88,7 @@ public class profileFragment extends Fragment {
                 String cash = String.valueOf(map.get("cash"));
                 if (map.get("status").equals("200")) {
                     Toast.makeText(getActivity().getApplicationContext(), "get cash", Toast.LENGTH_SHORT).show();
-                    cashTV.setText(cash);
+                    cashTV.setText(" " + cash);
                 } else {
                     Toast toastCenter = Toast.makeText(getActivity().getApplicationContext(), "no", Toast.LENGTH_SHORT);
                     toastCenter.setGravity(Gravity.CENTER, 0, 0);

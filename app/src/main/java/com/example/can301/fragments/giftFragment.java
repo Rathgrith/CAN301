@@ -2,6 +2,7 @@ package com.example.can301.fragments;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -32,16 +33,21 @@ public class giftFragment extends Fragment {
     GiftGridAdapter adapter;
     public int cash = 100000;//this need data from database. The cash of users.
     TextView Cash;
+    private String id;
+    private View root;
     private String backendUrl = "http://47.94.44.163:8080";
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_gift,container,false);
-
+        root = inflater.inflate(R.layout.fragment_gift,container,false);
         init(root);
         return root;
     }
-
+    public void readID(){
+        SharedPreferences mypref = root.getContext().getSharedPreferences("config", root.getContext().MODE_PRIVATE);
+        id = mypref.getString("id", "1");
+        Cash.setText(id);
+    }
     private void init(View root){
         gridView = (GridView) root.findViewById(R.id.gift_grid_layout);
         List<GiftItem> list = GiftItem.getDefaultList();
@@ -50,12 +56,14 @@ public class giftFragment extends Fragment {
         gridView.setAdapter(adapter);
         Cash = (TextView) root.findViewById(R.id.cashTV);
         //Cash.setText("Cash : " + cash );
+        readID();
         getCash();
-    }
+}
 
     private void getCash(){
+
         HashMap hashMap = new HashMap();
-        hashMap.put("id","1");
+        hashMap.put("id",id);
         //System.out.println(getActivity());
         OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/user/querycash/", new NetAgent() {
             @Override
@@ -64,7 +72,7 @@ public class giftFragment extends Fragment {
                 String cash = String.valueOf(map.get("cash"));
                 if (map.get("status").equals("200")) {
                     //Toast.makeText(getActivity().getApplicationContext(), "get cash", Toast.LENGTH_SHORT).show();
-                    Cash.setText("Cash = " + cash);
+                    Cash.setText("Cash: " + cash);
                 } else {
                     Toast toastCenter = Toast.makeText(getActivity().getApplicationContext(), "no", Toast.LENGTH_SHORT);
                     toastCenter.setGravity(Gravity.CENTER, 0, 0);
@@ -82,5 +90,7 @@ public class giftFragment extends Fragment {
             }
         },hashMap,getActivity());
     }
+
+
 
 }

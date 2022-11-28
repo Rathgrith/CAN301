@@ -61,10 +61,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPref = getSharedPreferences("config", Context.MODE_PRIVATE);
-        if (sharedPref.getBoolean("isLoggedIn", false)) {
-            jumpToMain();
-        }
-//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        if (sharedPref.getBoolean("isLoggedIn", false)) jumpToMain();
+        // getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_login);
         Resources res = getResources();
         backendUrl = (String) res.getText(R.string.remoteBaseUrl);
@@ -177,18 +175,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
                 Map<String, String> map = FastJsonUtils.stringToCollect(result);
                 String isSuccess = map.get("isSuccess");
                 String message = map.get("message");
-                //System.out.println();
+                String id = String.valueOf(map.get("id"));
+                // System.out.println();
                 try {
                     if (isSuccess.equals("200")) {
-
                         // save email for profile
                         onSave();
-
                         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                         SharedPreferences sharedPref = getSharedPreferences("config", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putBoolean(String.valueOf("isLoggedIn"), true);
                         editor.putString(String.valueOf(R.string.checkEmail), email);
+                        editor.putString(String.valueOf("id"), id);
                         editor.apply();
                         onSave();
                         jumpToMain();
