@@ -32,7 +32,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ForegroundWhiteNoiseServiceOnBind extends Service implements MediaPlayer.OnCompletionListener {
-
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return super.onStartCommand(intent, flags, startId);
+    }
 
     private final WhiteNoiseBinder binder = new WhiteNoiseBinder();
 //    to save system resource, i will not instantiate all the mediaPlayer.
@@ -86,7 +89,7 @@ public class ForegroundWhiteNoiseServiceOnBind extends Service implements MediaP
                         singleMediaPlayer.setLooping(true);
                         singleMediaPlayer.start();
                         ((ImageButton)view).setBackgroundResource(R.mipmap.icons8_pause_100);
-                        NoiseListAdapter.setView((ImageButton) view);
+                        NoiseListAdapter.setView((ImageButton) view,noiseItem.title);
                         createNotification(noiseItem);
                     }else {
                         stopForeground(false);
@@ -96,7 +99,7 @@ public class ForegroundWhiteNoiseServiceOnBind extends Service implements MediaP
                         singleMediaPlayer.start();
                         ((ImageButton)view).setBackgroundResource(R.mipmap.icons8_pause_100);
                         lastOne.setBackgroundResource(R.mipmap.icons8_play_100);
-                        NoiseListAdapter.setView((ImageButton) view);
+                        NoiseListAdapter.setView((ImageButton) view, noiseItem.title);
                         createNotification(noiseItem);
                     }
                 }
@@ -153,6 +156,14 @@ public class ForegroundWhiteNoiseServiceOnBind extends Service implements MediaP
 
     @Override
     public void onDestroy() {
+        if(singleMediaPlayer!=null){
+//            if (singleMediaPlayer.isPlaying()) {
+//                singleMediaPlayer.stop();
+//            }
+            singleMediaPlayer.release();
+        }
+        NoiseListAdapter.setNull();
+        stopForeground(true);
         super.onDestroy();
         Log.d(ForegroundWhiteNoiseServiceOnBind.this.getClass().getName(), "onDestroy: ");
     }
@@ -160,9 +171,9 @@ public class ForegroundWhiteNoiseServiceOnBind extends Service implements MediaP
     @Override
     public boolean onUnbind(Intent intent) {
         if(singleMediaPlayer!=null){
-            if (singleMediaPlayer.isPlaying()) {
-                singleMediaPlayer.stop();
-            }
+//            if (singleMediaPlayer.isPlaying()) {
+//                singleMediaPlayer.stop();
+//            }
             singleMediaPlayer.release();
         }
         NoiseListAdapter.setNull();

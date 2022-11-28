@@ -70,6 +70,7 @@ public class whiteNoiseFragment extends Fragment {
         listView = (ListView) root.findViewById(R.id.noise_list_layout);
         List<NoiseItem> list = NoiseItem.getDefaultList();
         Intent intent = new Intent(getActivity(), ForegroundWhiteNoiseServiceOnBind.class);
+        requireActivity().startService(intent);
         requireActivity().bindService(intent,connection, Service.BIND_AUTO_CREATE);
 
         adapter = new NoiseListAdapter(getContext(),list);
@@ -80,6 +81,8 @@ public class whiteNoiseFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        requireActivity().unbindService(connection);
+        Intent intent = new Intent(getActivity(), ForegroundWhiteNoiseServiceOnBind.class);
+        requireActivity().stopService(intent);
+//        requireActivity().unbindService(connection);
     }
 }
