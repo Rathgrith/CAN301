@@ -80,13 +80,13 @@ public class NoiseListAdapter extends BaseAdapter {
                 if(musicPlaying==null){
 //                    Log.d("", "onClick:"+ whiteNoiseFragment.foregroundWhiteNoiseServiceOnBind);
                     whiteNoiseFragment.foregroundWhiteNoiseServiceOnBind.startNewNoise(noiseItem,view, (ImageButton) musicPlaying);
-                    musicPlaying = (ImageButton) view;
+
 
                 }else if (musicPlaying==view){
                     whiteNoiseFragment.foregroundWhiteNoiseServiceOnBind.pauseNoise(view,musicPlaying);
                 }else {
                     whiteNoiseFragment.foregroundWhiteNoiseServiceOnBind.startNewNoise(noiseItem,view,musicPlaying);
-                    musicPlaying = (ImageButton) view;
+
                 }
 
             }

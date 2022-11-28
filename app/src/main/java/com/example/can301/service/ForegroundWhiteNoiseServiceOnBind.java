@@ -154,14 +154,6 @@ public class ForegroundWhiteNoiseServiceOnBind extends Service implements MediaP
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(singleMediaPlayer!=null){
-            if (singleMediaPlayer.isPlaying()) {
-                singleMediaPlayer.stop();
-            }
-            singleMediaPlayer.release();
-
-        }
-        stopForeground(true);
         Log.d(ForegroundWhiteNoiseServiceOnBind.this.getClass().getName(), "onDestroy: ");
     }
 
@@ -173,6 +165,7 @@ public class ForegroundWhiteNoiseServiceOnBind extends Service implements MediaP
             }
             singleMediaPlayer.release();
         }
+        NoiseListAdapter.setNull();
         stopForeground(true);
         return super.onUnbind(intent);
     }
