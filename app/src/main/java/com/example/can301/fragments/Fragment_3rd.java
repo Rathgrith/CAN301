@@ -172,7 +172,7 @@ public class Fragment_3rd extends Fragment {
         Intent intent = null;
         intent = new Intent(requireContext(), QRcode.class);
         startActivity(intent);
-        Toast center = Toast.makeText(getActivity().getApplicationContext(), "扫码", Toast.LENGTH_SHORT);
+        Toast center = Toast.makeText(getActivity().getApplicationContext(), "Please Scan QR code", Toast.LENGTH_SHORT);
         center.setGravity(Gravity.CENTER, 0, 0);
         center.show();
     }

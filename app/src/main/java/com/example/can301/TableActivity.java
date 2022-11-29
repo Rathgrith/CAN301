@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import com.example.can301.net.OkHttpUtils;
 import com.example.can301.utilities.FastJsonUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,9 +33,10 @@ public class TableActivity extends Activity {
     private int[] seatStatus;
     private ArrayList<Integer> seatIDs;
     private String backendUrl;
-    private static int taken;
-    private static int ava;
-    private static int unk;
+    private int taken = 0;
+    private int ava = 0;
+    private int unk = 0;
+    private Button checkinBtn;
     private TextView tableStats;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,7 @@ public class TableActivity extends Activity {
             setContentView(R.layout.activity_table_h);
         else
             setContentView(R.layout.activity_table_sqr);
+        checkinBtn = findViewById(R.id.checkinBtn);
         testTV = findViewById(R.id.testView);
         testTV.setText(type + "," + startIndex + ", " + seatNumber);
         tableStats = findViewById(R.id.tableStats);
@@ -67,13 +71,79 @@ public class TableActivity extends Activity {
         findSeat();
         //
         try{
-            getSeatStatus();
+            initSeatStatus();
         }
         catch (Exception e){
             e.printStackTrace();
         }
+        checkinBtn.setOnClickListener(this::onCheckInClick);
         assignSeatBtn(seatList);
         readID();
+    }
+
+    private void gainCoin(String id, int credit){
+            HashMap hashMap = new HashMap();
+            hashMap.put("id", id);
+            hashMap.put("salary", String.valueOf(credit));
+            //System.out.println(getActivity());
+            OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/user/getcash/", new NetAgent() {
+                @Override
+                public void onSuccess(String result) {
+                    Map<String, String> map = FastJsonUtils.stringToCollect(result);
+                    String cash = String.valueOf(map.get("cash"));
+                    if (map.get("status").equals("200")) {
+                        //Toast.makeText(getActivity().getApplicationContext(), "get cash", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast toastCenter = Toast.makeText(getApplicationContext(), "no", Toast.LENGTH_SHORT);
+                        toastCenter.setGravity(Gravity.CENTER, 0, 0);
+                        toastCenter.show();
+                    }
+                }
+                @Override
+                public void onError(Exception e) {
+                        e.printStackTrace();
+                        Toast center = Toast.makeText(getApplicationContext(), "network failure", Toast.LENGTH_SHORT);
+                        center.setGravity(Gravity.CENTER, 0, 0);
+                        center.show();
+                }
+            },hashMap,this);
+    }
+
+    private void onCheckInClick(View view) {
+        int credit = 0;
+        String userid = "1";
+        SharedPreferences userpref = getSharedPreferences("config", MODE_PRIVATE);
+        userid = userpref.getString("id", "1");
+        SharedPreferences mypref = getSharedPreferences("tab", MODE_PRIVATE);
+        Date currdate = new Date(System.currentTimeMillis()); //or simply new Date();
+        Date archivedDate = new Date(mypref.getLong("date", 0));
+        int last_modified = archivedDate.getDay();
+
+        //!!
+        // one seat 5 credits by checkin Commit (max 25), global time recorded, uncomment condition to activate date detection
+        if(true
+                //currdate.getDay() - last_modified >= 1
+            ){
+            String stringStatus =  mypref.getString("statuslist", "null");
+            for (int i = startIndex; i < startIndex+seatNumber; i++) {
+                if(seatStatus[i] != Integer.parseInt(stringStatus.substring(i-startIndex,i-startIndex+1))){
+                    credit += 5;
+                }
+            }
+            if (credit > 25) credit = 25;
+            int old_ava = mypref.getInt("available", 0);
+            int old_unk = mypref.getInt("unknown", 0);
+            int old_tak = mypref.getInt("taken", 0);
+            long millis = currdate.getTime();
+            SharedPreferences.Editor editor = mypref.edit();
+            editor.putLong("date", millis);
+            gainCoin(userid, credit);
+            Toast.makeText(getApplicationContext(), "you earned!" + credit, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TableActivity.this, mainTestActivity.class);
+            startActivity(intent);
+        }
+        else Toast.makeText(getApplicationContext(), "You have taken todays credit!", Toast.LENGTH_SHORT).show();
+        //System.out.println(old_tak + ", " + old_ava + ", "+ old_unk + ", " + stringStatus + ", " + myDate);
     }
 
     private void findSeat(){
@@ -114,39 +184,72 @@ public class TableActivity extends Activity {
         }
         changeSeatStatus(specSeatIdx+1,999);
         getSeatStatus();
-//        if(status == 0){
-//            seatList[localID].setImageResource(R.drawable.grayseat);
-//            //当前status设为2，转灰色
-//            status = 2;
-//
-//            // 这里写上，连后端设置status
-//            // 解除下面注释可以随时刷新
-//            getSeatStatus();
-//        }
-//        else if(status == 1) {
-//            seatList[localID].setImageResource(R.drawable.redseat);
-//            //当前status设为2，转红色
-//            status = 0;
-//            changeSeatStatus(localID,999);
-//            // 这里写上，连后端设置status
-//            // 解除下面注释可以随时刷新
-//            getSeatStatus();
-//        }
-//        else if(status == 2){
-//            seatList[localID].setImageResource(R.drawable.greenseat);
-//            //当前status设为2，转绿色
-//            status = 1;
-//            changeSeatStatus(localID,999);
-//            // 这里写上，连后端设置status
-//            // 解除下面注释可以随时刷新
-//            getSeatStatus();
-//        }
-        //System.out.println("color = " + greenID);
-        //Toast toastCenter = Toast.makeText(getApplicationContext(), "seat in list index = " + specSeatIdx, Toast.LENGTH_SHORT);
-        //toastCenter.setGravity(Gravity.CENTER, 0, 0);
-        //toastCenter.show();
     }
 
+    private void initSeatStatus(){
+        taken = 0;
+        ava = 0;
+        unk = 0;
+        HashMap hashMap = new HashMap();
+        OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/seat/listseat", new NetAgent() {
+            @Override
+            public void onSuccess(String result) {
+                Map<String, String> map = FastJsonUtils.stringToCollect(result);
+                String status = map.get("status");
+                String message = map.get("status");
+                String a = map.get("seatstatus");
+                String statusKey = "";
+                Object[] b = FastJsonUtils.toArray(a);
+                int[] ss = new int[b.length];
+                for (int i = 0; i < ss.length; i++) {
+                    ss[i] = Integer.parseInt(b[i].toString());
+                    statusKey += b[i].toString();
+                }
+                seatStatus = ss;
+                // System.out.println(seatStatus);
+                if (status.equals("200")) {
+                } else {
+                    Toast toastCenter = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+                    toastCenter.setGravity(Gravity.CENTER, 0, 0);
+                    toastCenter.show();
+                }
+                int bias=0;
+                for (ImageView seat: seatList) {
+                    if(seatStatus[startIndex+bias]==0){
+                        taken++;
+                        seat.setImageDrawable(getDrawable(R.drawable.redseat));
+                    }
+                    else if(seatStatus[startIndex+bias]==1){
+                        ava++;
+                        seat.setImageDrawable(getDrawable(R.drawable.greenseat));
+                    }
+                    else if(seatStatus[startIndex+bias]==2){
+                        unk++;
+                        seat.setImageDrawable(getDrawable(R.drawable.grayseat));
+                    }else{
+                        seat.setImageDrawable(getDrawable(R.drawable.grayseat));
+                        unk++;
+                    }
+                    bias++;
+                }
+                tableStats.setText("// "+ taken + " taken, " + ava + " available, "+ unk +" unknown. //");
+                SharedPreferences mypref = getSharedPreferences("tab", MODE_PRIVATE);
+                SharedPreferences.Editor editor = mypref.edit();
+                editor.putString("statuslist", statusKey.substring(startIndex, startIndex + seatNumber));
+                editor.putInt("available", ava);
+                editor.putInt("unknown", unk);
+                editor.putInt("taken", taken);
+                editor.apply();
+            }
+            @Override
+            public void onError(Exception e) {
+                e.printStackTrace();
+                Toast center = Toast.makeText(getApplicationContext(), "network failure", Toast.LENGTH_SHORT);
+                center.setGravity(Gravity.CENTER, 0, 0);
+                center.show();
+            }
+        },hashMap,this);
+    }
 
     private void getSeatStatus(){
         taken = 0;
@@ -168,8 +271,7 @@ public class TableActivity extends Activity {
                 seatStatus = ss;
                 // System.out.println(seatStatus);
                 if (status.equals("200")) {
-                    Toast.makeText(getApplicationContext(), "Updated seat info", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(getApplicationContext(), "Updated seat info", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast toastCenter = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
                     toastCenter.setGravity(Gravity.CENTER, 0, 0);
@@ -207,7 +309,6 @@ public class TableActivity extends Activity {
 
     }
     private void changeSeatStatus(int id,int qrresult){
-
         HashMap hashMap = new HashMap();
         hashMap.put("seatIndex",String.valueOf(id));
         hashMap.put("qrresult",String.valueOf(qrresult));

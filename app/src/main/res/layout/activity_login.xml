@@ -33,18 +33,7 @@
             android:textColor="@color/black"
             android:textSize="30dp" />
     </LinearLayout>
-        <EditText
-            android:id="@+id/nickName"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15pt"
-            android:hint="Email Address"
-            android:inputType="text"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:textColor="@color/teal_200"
-            android:textSize="16sp" />
+
     <EditText
         android:id="@+id/email"
         android:layout_gravity="center_horizontal"
