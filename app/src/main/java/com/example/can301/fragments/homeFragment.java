@@ -30,11 +30,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.relex.circleindicator.CircleIndicator3;
+
 public class homeFragment extends Fragment {
     private View root;
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
     private int num_page = 4;
+    private CircleIndicator3 mIndicator;
     private Fragment_4th fragment_4th;
     private Fragment_3rd fragment_3rd;
     private Fragment_5th fragment_5th;
@@ -63,6 +66,10 @@ public class homeFragment extends Fragment {
         //Adapter
         pagerAdapter = new PageViewAdapter(this.getActivity(), num_page);
         mPager.setAdapter(pagerAdapter);
+        //Indicator
+        mIndicator = root.findViewById(R.id.indicator);
+        mIndicator.setViewPager(mPager);
+        mIndicator.createIndicators(num_page,0);
 
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         mPager.setCurrentItem(1000);
@@ -80,6 +87,7 @@ public class homeFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                mIndicator.animatePageSelected(position%num_page);
             }
 
         });
