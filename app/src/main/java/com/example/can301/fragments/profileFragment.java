@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,10 +30,13 @@ import java.util.Map;
 
 public class profileFragment extends Fragment {
 
-    private TextView emailTV, nicknameTV, cashTV, timeTV, dayTV;
+    private TextView emailTV, nicknameTV, cashTV, timeTV, giftTV;
     private Button logOut;
     private View root;
     private String id;
+
+    private int NumberOfGift;
+    private int[] GiftStatus;
     private String backendUrl = "http://47.94.44.163:8080";
     @Nullable
     @Override
@@ -60,9 +64,11 @@ public class profileFragment extends Fragment {
         emailTV = (TextView) root.findViewById(R.id.emailTV);
         nicknameTV = (TextView) root.findViewById(R.id.nicknameTV);
         cashTV = (TextView) root.findViewById(R.id.cashTV);
+        giftTV = (TextView) root.findViewById(R.id.dayTV);
         logOut = getActivity().findViewById(R.id.btn_log_out);
         logOut.setOnClickListener(this::onClick);
         readID();
+        GetGiftNumber();
 
     }
 
@@ -106,6 +112,48 @@ public class profileFragment extends Fragment {
                 }
             },hashMap,getActivity());
         }
+
+    private void GetGiftNumber(){
+
+        HashMap hashMap = new HashMap();
+        hashMap.put("id",id);
+        OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/user/getGift", new NetAgent() {
+            @Override
+            public void onSuccess(String result) {
+                Map<String, String> map = FastJsonUtils.stringToCollect(result);
+                String status = map.get("status");
+
+                String a = map.get("giftList");
+                Object[] b = FastJsonUtils.toArray(a);
+                int[] ss = new int[b.length];
+                for (int i = 0; i < ss.length; i++) {
+                    ss[i] = Integer.parseInt(b[i].toString());
+                }
+                GiftStatus = ss;
+                NumberOfGift = GiftStatus.length;
+                // System.out.println(seatStatus);
+                if (status.equals("200")) {
+                    giftTV.setText(" " + NumberOfGift);
+                    //Toast.makeText(getApplicationContext(), "Updated seat info", Toast.LENGTH_SHORT).show();
+                } else {
+                }
+                int bias=0;
+            }
+            @Override
+            public void onError(Exception e) {
+                if (isAdded()) {
+                    e.printStackTrace();
+                    Toast center = Toast.makeText(getActivity().getApplicationContext(), "network failure", Toast.LENGTH_SHORT);
+                    center.setGravity(Gravity.CENTER, 0, 0);
+                    center.show();
+                }
+            }
+
+        },hashMap,getActivity());
+
+    }
+
+
     private void onClick(View view) {
         AlertDialog dialog = new AlertDialog.Builder(view.getContext())
                 .setIcon(R.mipmap.emblem)//set the image
@@ -123,7 +171,6 @@ public class profileFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("config", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        // 这两行有bug，问题sharedpreference没有被改变，于是回到login之后，还会跳转到main
                         editor.putBoolean("isLoggedIn",false);
                         editor.putString("email",null);
                         editor.apply();

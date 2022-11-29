@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -14,11 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.example.can301.net.NetAgent;
 import com.example.can301.net.OkHttpUtils;
 import com.example.can301.utilities.FastJsonUtils;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -109,21 +113,30 @@ public class TableActivity extends Activity {
             },hashMap,this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static boolean isSameDay(Date date1, Date date2) {
+        LocalDate localDate1 = date1.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        LocalDate localDate2 = date2.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        return localDate1.isEqual(localDate2);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void onCheckInClick(View view) {
         int credit = 0;
         String userid = "1";
         SharedPreferences userpref = getSharedPreferences("config", MODE_PRIVATE);
         userid = userpref.getString("id", "1");
         SharedPreferences mypref = getSharedPreferences("tab", MODE_PRIVATE);
-        Date currdate = new Date(System.currentTimeMillis()); //or simply new Date();
+        Date currdate = new Date(); //or simply new Date();
         Date archivedDate = new Date(mypref.getLong("date", 0));
-        int last_modified = archivedDate.getDay();
 
-        //!!
+        //!
         // one seat 5 credits by checkin Commit (max 25), global time recorded, uncomment condition to activate date detection
-        if(true
-                //currdate.getDay() - last_modified >= 1
-            ){
+        if(!isSameDay(currdate,archivedDate)){
             String stringStatus =  mypref.getString("statuslist", "null");
             for (int i = startIndex; i < startIndex+seatNumber; i++) {
                 if(seatStatus[i] != Integer.parseInt(stringStatus.substring(i-startIndex,i-startIndex+1))){
@@ -138,11 +151,16 @@ public class TableActivity extends Activity {
             SharedPreferences.Editor editor = mypref.edit();
             editor.putLong("date", millis);
             gainCoin(userid, credit);
-            Toast.makeText(getApplicationContext(), "you earned!" + credit, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "you earned " + credit, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(TableActivity.this, mainTestActivity.class);
             startActivity(intent);
         }
-        else Toast.makeText(getApplicationContext(), "You have taken todays credit!", Toast.LENGTH_SHORT).show();
+        else {
+            Toast.makeText(getApplicationContext(), "You have taken todays credit!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TableActivity.this, mainTestActivity.class);
+            startActivity(intent);
+        }
+
         //System.out.println(old_tak + ", " + old_ava + ", "+ old_unk + ", " + stringStatus + ", " + myDate);
     }
 
@@ -273,9 +291,6 @@ public class TableActivity extends Activity {
                 if (status.equals("200")) {
                     //Toast.makeText(getApplicationContext(), "Updated seat info", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast toastCenter = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
-                    toastCenter.setGravity(Gravity.CENTER, 0, 0);
-                    toastCenter.show();
                 }
                 int bias=0;
                 for (ImageView seat: seatList) {
@@ -318,12 +333,7 @@ public class TableActivity extends Activity {
                 Map<String, String> map = FastJsonUtils.stringToCollect(result);
                 String status = map.get("status");
                 if (status.equals("200")) {
-                    Toast.makeText(getApplicationContext(), "Seat status changed", Toast.LENGTH_SHORT).show();
-
                 } else {
-                    Toast toastCenter = Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_SHORT);
-                    toastCenter.setGravity(Gravity.CENTER, 0, 0);
-                    toastCenter.show();
                 }
                 getSeatStatus();
             }
