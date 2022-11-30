@@ -10,7 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +31,13 @@ import java.util.Map;
 
 public class profileFragment extends Fragment {
 
-    private TextView emailTV, nicknameTV, cashTV, timeTV, giftTV;
+    private TextView emailTV, cashTV, timeTV, giftTV;
+    private EditText nicknameTV;
     private Button logOut;
     private View root;
     private String id;
+    private ImageButton editName;
+    private String nickname;
 
     private int NumberOfGift;
     private int[] GiftStatus;
@@ -49,7 +53,6 @@ public class profileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initVariable();
-
         readEmail();
         getCash();
     }
@@ -62,25 +65,47 @@ public class profileFragment extends Fragment {
 
     private void initVariable(){
         emailTV = (TextView) root.findViewById(R.id.emailTV);
-        nicknameTV = (TextView) root.findViewById(R.id.nicknameTV);
+        nicknameTV = (EditText) root.findViewById(R.id.nicknameTV);
         cashTV = (TextView) root.findViewById(R.id.cashTV);
         giftTV = (TextView) root.findViewById(R.id.dayTV);
         logOut = getActivity().findViewById(R.id.btn_log_out);
+        editName = root.findViewById(R.id.editname);
         logOut.setOnClickListener(this::onClick);
+        editName.setOnClickListener(this::onEditname);
+        timeTV = (TextView) root.findViewById(R.id.timeTV);
         readID();
         GetGiftNumber();
+        bindNickname();
+    }
+
+    private void bindNickname(){
+        SharedPreferences mypref = root.getContext().getSharedPreferences("info", root.getContext().MODE_PRIVATE);
+        nickname = mypref.getString("nickname", "DefaultName");
+        nicknameTV.setText(nickname);
 
     }
 
-    public void readID(){
+    private void onEditname(View view){
+        nickname = nicknameTV.getText().toString();
+        SharedPreferences mypref = root.getContext().getSharedPreferences("info", root.getContext().MODE_PRIVATE);
+        SharedPreferences.Editor editor = mypref.edit();
+        editor.putString("nickname", nickname);
+        editor.apply();
+        nicknameTV.setText(nickname);
+    }
+
+    private void readID(){
         SharedPreferences mypref = root.getContext().getSharedPreferences("config", root.getContext().MODE_PRIVATE);
         id = mypref.getString("id", "1");
     }
 
-    public void readEmail(){
+    private void readEmail(){
         SharedPreferences mypref = root.getContext().getSharedPreferences("login", root.getContext().MODE_PRIVATE);
         String email = mypref.getString("email", "User Email");
         emailTV.setText(email);
+        SharedPreferences countpref = root.getContext().getSharedPreferences("tab", root.getContext().MODE_PRIVATE);
+        int checkCount = countpref.getInt("checkCount", 0);
+        timeTV.setText(" " + String.valueOf(checkCount));
     }
 
     private void getCash(){

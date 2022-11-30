@@ -42,6 +42,7 @@ public class TableActivity extends Activity {
     private int unk = 0;
     private Button checkinBtn;
     private TextView tableStats;
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +132,7 @@ public class TableActivity extends Activity {
         SharedPreferences userpref = getSharedPreferences("config", MODE_PRIVATE);
         userid = userpref.getString("id", "1");
         SharedPreferences mypref = getSharedPreferences("tab", MODE_PRIVATE);
+        int checkCount = mypref.getInt("checkCount", 0);
         Date currdate = new Date(); //or simply new Date();
         Date archivedDate = new Date(mypref.getLong("date", 0));
 
@@ -144,14 +146,17 @@ public class TableActivity extends Activity {
                 }
             }
             if (credit > 25) credit = 25;
-            int old_ava = mypref.getInt("available", 0);
+/*            int old_ava = mypref.getInt("available", 0);
             int old_unk = mypref.getInt("unknown", 0);
-            int old_tak = mypref.getInt("taken", 0);
+            int old_tak = mypref.getInt("taken", 0);*/
             long millis = currdate.getTime();
             SharedPreferences.Editor editor = mypref.edit();
             editor.putLong("date", millis);
+            checkCount += 1;
+            editor.putInt("checkCount", checkCount);
+            editor.apply();
             gainCoin(userid, credit);
-            Toast.makeText(getApplicationContext(), "you earned " + credit, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "you earned " + credit + "!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(TableActivity.this, mainTestActivity.class);
             startActivity(intent);
         }
@@ -189,15 +194,9 @@ public class TableActivity extends Activity {
     private void onSeatClick(View view) {
         int id = view.getId();
         int specSeatIdx = startIndex;
-        String staticSeatId = "";
-        int status = 0;
-        int localID = 0;
         for (int i = 0; i<seatIDs.size(); i++) {
             if(id == seatIDs.get(i)){
                 specSeatIdx += i;
-                staticSeatId = "seat" + (i+1);
-                status = seatStatus[startIndex+i];
-                localID = i;
             }
         }
         changeSeatStatus(specSeatIdx+1,999);

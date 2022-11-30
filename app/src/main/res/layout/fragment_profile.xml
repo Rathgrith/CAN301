@@ -52,7 +52,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="200dp">
 
-                <TextView
+                <EditText
                     android:id="@+id/nicknameTV"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
@@ -62,10 +62,21 @@
                     android:drawableStart="@drawable/ic_baseline_account_box_24"
                     android:gravity="left"
                     android:padding="20dp"
+                    android:inputType="textNoSuggestions"
                     android:text=" UserNickName"
                     android:textColor="@color/black"
+                    android:maxLines="1"
                     android:textSize="20dp"
                     android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/editname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignTop="@+id/nicknameTV"
+                    android:layout_alignEnd="@+id/nicknameTV"
+                    android:layout_marginTop="5dp"
+                    android:src="@android:drawable/ic_menu_send"></ImageButton>
 
                 <TextView
                     android:id="@+id/cashTV"

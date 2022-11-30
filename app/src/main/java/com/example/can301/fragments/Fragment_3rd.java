@@ -112,7 +112,7 @@ public class Fragment_3rd extends Fragment {
                 seatStatus = ss;
                 System.out.println(seatStatus);
                 if (status.equals("200")) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Updated seat info", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity().getApplicationContext(), "Updated seat info", Toast.LENGTH_SHORT).show();
 
                 } else {
                     Toast toastCenter = Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT);
