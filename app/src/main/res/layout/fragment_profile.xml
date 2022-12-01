@@ -61,11 +61,11 @@
                     android:background="@drawable/border"
                     android:drawableStart="@drawable/ic_baseline_account_box_24"
                     android:gravity="left"
-                    android:padding="20dp"
                     android:inputType="textNoSuggestions"
+                    android:maxLines="1"
+                    android:padding="20dp"
                     android:text=" UserNickName"
                     android:textColor="@color/black"
-                    android:maxLines="1"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 

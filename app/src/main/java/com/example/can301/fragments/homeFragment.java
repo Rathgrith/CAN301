@@ -70,7 +70,7 @@ public class homeFragment extends Fragment {
         mIndicator = root.findViewById(R.id.indicator);
         mIndicator.setViewPager(mPager);
         mIndicator.createIndicators(num_page,0);
-
+        //ViewPager Setting
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         mPager.setCurrentItem(1000);
         mPager.setOffscreenPageLimit(3);

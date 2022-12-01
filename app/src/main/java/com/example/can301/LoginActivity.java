@@ -237,6 +237,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         startActivity(intent);
     }
 
+    private void jumpToTutorial() {
+        Intent intent = null;
+        //setContentView(R.string.login_flag);
+        intent = new Intent(this, TutorialActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
         Log.d(TAG, "onFocusChange: " + hasFocus);
@@ -273,7 +281,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
 
 
     // saving info in shared preferences file for displaying it on the profile
-
     public void onSave() {
         // retrieve info from email edit field
         String email = inputEmail.getText().toString();
