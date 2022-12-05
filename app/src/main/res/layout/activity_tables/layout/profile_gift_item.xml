@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="10dp"
+    android:paddingTop="5dp"
+    android:paddingEnd="5dp"
+    android:paddingBottom="5dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/border_profile_gift">
+
+    <ImageView
+        android:id="@+id/profile_gift"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="left"
+        android:src="@drawable/xjtlu_bear"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/numbersText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="3dp"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:text="Fire in the forest"
+        android:textColor="@color/black" />
+       </LinearLayout>
+</LinearLayout>

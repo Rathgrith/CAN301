@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,25 +28,35 @@ import com.example.can301.net.NetAgent;
 import com.example.can301.net.OkHttpUtils;
 import com.example.can301.utilities.FastJsonUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class profileFragment extends Fragment {
 
     private TextView emailTV, cashTV, timeTV, giftTV;
+    public ImageView avatar;
     private EditText nicknameTV;
     private Button logOut;
     private View root;
     private String id;
-    private ImageButton editName;
+    private ImageButton editName, showGift;
     private String nickname;
-
+    private int[] avatarArray;
     private int NumberOfGift;
     private int[] GiftStatus;
+    private ImageButton changeAvatar;
+//    beacuse of the id setting in backend, use -1 to occupy the index 0.
+    private int[] giftImageArray = {-1,R.drawable.xjtlu_bear,R.drawable.xjtlu_bird,R.drawable.xjtlu_cap};
+    int avatar_index;
+    private List<Map<String, Object>> giftList = new ArrayList<>();
     private String backendUrl = "http://47.94.44.163:8080";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         root = inflater.inflate(R.layout.fragment_profile,container,false);
         return root;
     }
@@ -64,6 +76,7 @@ public class profileFragment extends Fragment {
 //    }
 
     private void initVariable(){
+        avatar = root.findViewById(R.id.profileIV);
         emailTV = (TextView) root.findViewById(R.id.emailTV);
         nicknameTV = (EditText) root.findViewById(R.id.nicknameTV);
         cashTV = (TextView) root.findViewById(R.id.cashTV);
@@ -73,6 +86,50 @@ public class profileFragment extends Fragment {
         logOut.setOnClickListener(this::onClick);
         editName.setOnClickListener(this::onEditname);
         timeTV = (TextView) root.findViewById(R.id.timeTV);
+        showGift = root.findViewById(R.id.showGift);
+        avatarArray = new int[]{R.drawable.man1, R.drawable.man2, R.drawable.woman1, R.drawable.woman2};
+        SharedPreferences sharedPref = requireActivity().getSharedPreferences("config", Context.MODE_PRIVATE);
+        avatar_index = sharedPref.getInt("avatar", 0);
+        avatar.setImageResource(avatarArray[avatar_index]);
+        changeAvatar = root.findViewById(R.id.change_avatar);
+        changeAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                avatar_index+=1;
+                if (avatar_index>3){
+                    avatar_index = 0;
+                }
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("avatar",avatar_index);
+                editor.apply();
+                avatar.setImageResource(avatarArray[avatar_index]);
+            }
+        });
+        showGift.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(requireActivity());
+                builder.setTitle("Detail Information!");
+                builder.setIcon(R.mipmap.icons8_gift_on);
+                SimpleAdapter adapter=new SimpleAdapter(
+                        requireContext(),
+                        giftList,
+                        R.layout.profile_gift_item,
+
+                        new String[]{"image","text"},
+
+                new int[]{R.id.giftImage,R.id.numbersText});
+                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+            });
+                builder.create().show();
+
+        }
+        });
+
         readID();
         GetGiftNumber();
         bindNickname();
@@ -155,10 +212,29 @@ public class profileFragment extends Fragment {
                     ss[i] = Integer.parseInt(b[i].toString());
                 }
                 GiftStatus = ss;
+                Map<Integer,Integer> itemAndNumber= new HashMap<>();
+                for(Integer x:ss){
+                    if(itemAndNumber.containsKey(x)){
+                        itemAndNumber.put(x,itemAndNumber.get(x)+1);
+                    }else {
+                        itemAndNumber.put(x,1);
+                    }
+                }
+                for(Integer x:itemAndNumber.keySet()){
+                    Map<String,Object> temMap = new HashMap<>();
+                    temMap.put("image",giftImageArray[x]);
+                    temMap.put("text","You can change "+itemAndNumber.get(x)+" items!");
+                    giftList.add(temMap);
+                }
                 NumberOfGift = GiftStatus.length;
                 // System.out.println(seatStatus);
                 if (status.equals("200")) {
-                    giftTV.setText(" " + NumberOfGift);
+                    if(NumberOfGift == 0){
+                        giftTV.setText("You could buy some gift in gift store °˖✧◝(⁰▿⁰)◜✧˖°");
+                    }{
+                        giftTV.setText(String.format("Gift amount: %d!!", NumberOfGift));
+                    }
+
                     //Toast.makeText(getApplicationContext(), "Updated seat info", Toast.LENGTH_SHORT).show();
                 } else {
                 }

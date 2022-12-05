@@ -21,22 +21,31 @@
                 android:background="@color/navy">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/profileIV"
-                        android:layout_width="1200dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="140dp"
                         android:layout_marginTop="40dp"
                         android:src="@drawable/default_prof"
                         android:layout_centerHorizontal="true"/>
-
+                    <ImageButton
+                        android:id="@+id/change_avatar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icons8_change_avatar_24"
+                        android:background="@drawable/border_profile_gift"
+                        android:layout_alignBottom="@+id/profileIV"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/profileIV" />
                     <TextView
                         android:id="@+id/emailTV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+
                         android:layout_marginTop="190dp"
                         android:gravity="center"
                         android:text="UserEmailHere@gmail.com"
@@ -60,10 +69,11 @@
                     android:layout_marginTop="60dp"
                     android:background="@drawable/border"
                     android:drawableStart="@drawable/ic_baseline_account_box_24"
-                    android:gravity="left"
+                    android:gravity="center"
                     android:inputType="textNoSuggestions"
                     android:maxLines="1"
                     android:padding="20dp"
+                    android:maxLength="15"
                     android:text=" UserNickName"
                     android:textColor="@color/black"
                     android:textSize="20dp"
@@ -81,13 +91,14 @@
                 <TextView
                     android:id="@+id/cashTV"
                     android:layout_width="350dp"
+
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/nicknameTV"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/border"
                     android:drawableStart="@drawable/ic_baseline_monetization_on_24"
-                    android:gravity="left"
+                    android:gravity="center"
                     android:padding="20dp"
                     android:text=" 0"
                     android:textColor="@color/black"
@@ -103,7 +114,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/border"
                     android:drawableStart="@drawable/ic_baseline_alarm_24"
-                    android:gravity="left"
+                    android:gravity="center"
                     android:padding="20dp"
                     android:text=" 0"
                     android:textColor="@color/black"
@@ -119,12 +130,21 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/border"
                     android:drawableStart="@drawable/ic_baseline_calendar_today_24"
-                    android:gravity="left"
+                    android:gravity="center"
                     android:padding="20dp"
                     android:text=" 0"
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/showGift"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignTop="@+id/dayTV"
+                    android:layout_alignEnd="@+id/dayTV"
+                    android:layout_marginTop="5dp"
+                    android:src="@android:drawable/ic_menu_send"/>
 
                 <Button
                     android:id="@+id/btn_log_out"
