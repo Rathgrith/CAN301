@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,6 +14,8 @@
         android:layout_centerHorizontal="true"/>
 
     <androidx.cardview.widget.CardView
+        android:layout_above="@+id/rl1"
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="7dp"
@@ -20,7 +23,7 @@
         android:layout_below="@+id/tv_tuto"
         app:cardBackgroundColor="#95FFFFFF"
         app:cardCornerRadius="10dp"
-        app:cardElevation="2dp"
+        app:cardElevation="3dp"
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -34,60 +37,64 @@
                 android:layout_weight="1"
                 android:orientation="horizontal" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
-                <me.relex.circleindicator.CircleIndicator3
-                    android:id="@+id/indi"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_gravity="top" />
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:layout_alignParentBottom="true">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-
-                    <Button
-                        android:id="@+id/btn_skip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Skip">
-
-                    </Button>
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        />
-
-                    <Button
-                        android:id="@+id/btn_finish"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_marginRight="10dp"
-                        android:text="Finish">
-
-                    </Button>
-
-                </LinearLayout>
-            </RelativeLayout>
         </RelativeLayout>
-
     </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/indi"
+            app:ci_width="15dp"
+            app:ci_height="10dp"
+            app:ci_drawable="@color/navy"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="top" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:id="@+id/btn_skip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Skip">
+
+            </Button>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <Button
+                android:id="@+id/btn_finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:text="Finish">
+
+            </Button>
+
+        </LinearLayout>
+    </RelativeLayout>
 
 
 

@@ -37,9 +37,7 @@ public class Fragment_tutorial extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        System.out.println("Check before int");
         root =  inflater.inflate(R.layout.activity_tutorial, container, false);
-        System.out.println("Check before int");
         return root;
     }
 

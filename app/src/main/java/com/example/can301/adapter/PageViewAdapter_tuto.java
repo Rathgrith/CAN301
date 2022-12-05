@@ -10,6 +10,9 @@ import com.example.can301.fragments.Fragment_4th;
 import com.example.can301.fragments.Fragment_5th;
 import com.example.can301.fragments.Fragment_6th;
 import com.example.can301.fragments.Fragment_table;
+import com.example.can301.fragments.Fragment_tuto1;
+import com.example.can301.fragments.Fragment_tuto2;
+import com.example.can301.fragments.Fragment_tuto3;
 
 public class PageViewAdapter_tuto extends FragmentStateAdapter {
     public int mCount;
@@ -26,9 +29,9 @@ public class PageViewAdapter_tuto extends FragmentStateAdapter {
 
             System.out.println("Check Check Fragment create check");
 
-            if(index==0) return new Fragment_3rd();
-            else if(index==1) return new Fragment_table();
-            else return new Fragment_3rd();
+            if(index==0) return new Fragment_tuto1();
+            else if(index==1) return new Fragment_tuto2();
+            else return new Fragment_tuto3();
 
         }
 

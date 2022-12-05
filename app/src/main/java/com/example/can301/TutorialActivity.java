@@ -33,7 +33,7 @@ public class TutorialActivity extends AppCompatActivity {
     private View root;
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 4;
+    private int num_page = 3;
     private CircleIndicator3 mIndicator;
 
     private Button skip;
@@ -67,18 +67,16 @@ public class TutorialActivity extends AppCompatActivity {
 
     private void setInt(){
         mPager =findViewById(R.id.vp);
-        System.out.println("can you please work? come onnnnn");
         //Adapter
         pagerAdapter = new PageViewAdapter_tuto(this, num_page);
         mPager.setAdapter(pagerAdapter);
-        System.out.println("why????");
         //Indicator
         mIndicator = findViewById(R.id.indi);
         mIndicator.setViewPager(mPager);
         mIndicator.createIndicators(num_page,0);
         //ViewPager Setting
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-        mPager.setCurrentItem(1000);
+        mPager.setCurrentItem(3);
         mPager.setOffscreenPageLimit(3);
 
         mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
