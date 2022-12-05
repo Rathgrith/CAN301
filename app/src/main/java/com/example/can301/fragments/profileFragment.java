@@ -43,7 +43,9 @@ public class profileFragment extends Fragment {
     private String id;
     private ImageButton editName, showGift;
     private String nickname;
+
     private int[] avatarArray;
+
     private int NumberOfGift;
     private int[] GiftStatus;
     private ImageButton changeAvatar;
@@ -174,8 +176,8 @@ public class profileFragment extends Fragment {
             public void onSuccess(String result) {
                 Map<String, String> map = FastJsonUtils.stringToCollect(result);
                 String cash = String.valueOf(map.get("cash"));
-                if (map.get("status").equals("200")) {
-                    Toast.makeText(getActivity().getApplicationContext(), "get cash", Toast.LENGTH_SHORT).show();
+                if (String.valueOf(map.get("status")).equals("200")) {
+                    // Toast.makeText(getActivity().getApplicationContext(), "get cash", Toast.LENGTH_SHORT).show();
                     cashTV.setText(" " + cash);
                 } else {
                     Toast toastCenter = Toast.makeText(getActivity().getApplicationContext(), "no", Toast.LENGTH_SHORT);
@@ -203,9 +205,12 @@ public class profileFragment extends Fragment {
             @Override
             public void onSuccess(String result) {
                 Map<String, String> map = FastJsonUtils.stringToCollect(result);
-                String status = map.get("status");
-
-                String a = map.get("giftList");
+                String status = String.valueOf(map.get("status"));
+                String a = String.valueOf(map.get("giftList"));
+                if (status.equals("0")){
+                    giftTV.setText(" " + 0);
+                    return;
+                }
                 Object[] b = FastJsonUtils.toArray(a);
                 int[] ss = new int[b.length];
                 for (int i = 0; i < ss.length; i++) {

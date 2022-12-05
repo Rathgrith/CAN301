@@ -172,9 +172,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
             @Override
             public void onSuccess(String result) {
                 Map<String, String> map = FastJsonUtils.stringToCollect(result);
-                boolean isSuccess = Boolean.parseBoolean(map.get("isSuccess"));
+                String isSuccess = String.valueOf(map.get("isSuccess"));
                 String message = map.get("message");
-                if (isSuccess) {
+                if (isSuccess.equals("true")) {
                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                     jumpToLogin();
                 } else {

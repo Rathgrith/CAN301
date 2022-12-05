@@ -41,25 +41,72 @@
 
             <!--        </WebView>-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageButton
+                android:id="@+id/changeTemp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:text="Temperature - 23°C"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:layout_marginRight="10dp"
+                android:src="@android:drawable/ic_menu_send"
+                android:text="Temperature - 23°C"></ImageButton>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="35dp"
-                android:text="Humidity - 40%"
+                android:layout_alignBaseline="@+id/tempText"
+                android:layout_alignRight="@+id/tempText"
+                android:layout_marginRight="30dp"
+                android:padding="0dp"
+                android:text="Temperature -"
                 android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textSize="12dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <EditText
+                android:id="@+id/tempText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="50dp"
+                android:includeFontPadding="false"
+                android:inputType="numberDecimal"
+                android:padding="0dp"
+                android:gravity="right"
+                android:text="23°C"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/humidText"
+                android:layout_alignRight="@+id/humidText"
+                android:layout_marginRight="30dp"
+                android:padding="0dp"
+                android:text="Humidity -"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/humidText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_below="@+id/tempText"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:includeFontPadding="false"
+                android:inputType="numberDecimal"
+                android:padding="0dp"
+                android:text="40%"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                android:textStyle="bold"></EditText>
 
         </RelativeLayout>
 
