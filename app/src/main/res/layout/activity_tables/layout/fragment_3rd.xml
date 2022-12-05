@@ -133,7 +133,7 @@
                     android:layout_marginTop="15dp"
                     android:clickable="true"
                     app:backgroundTint="?attr/colorButtonNormal"
-                    app:srcCompat="@android:drawable/ic_menu_my_calendar"
+                    app:srcCompat="@drawable/ic_baseline_qr_code_scanner_24"
                     tools:ignore="MissingConstraints" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -142,8 +142,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/horizontalTable2"
                     android:layout_alignRight="@id/horizontalTable2"
-                    android:layout_marginRight="-10dp"
                     android:layout_marginTop="40dp"
+                    android:layout_marginRight="-10dp"
                     android:clickable="true"
                     app:backgroundTint="?attr/colorButtonNormal"
                     app:srcCompat="@android:drawable/ic_popup_sync" />
