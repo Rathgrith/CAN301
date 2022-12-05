@@ -277,11 +277,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
     public void onSave() {
         // retrieve info from email edit field
         String email = inputEmail.getText().toString();
-
         // shared preferences save info
         SharedPreferences mypref = getSharedPreferences("login", MODE_PRIVATE);
         SharedPreferences.Editor editor = mypref.edit();
-
+        editor.putString("admin1ID", "43");
+        editor.putString("admin2ID", "1");
         editor.putString("email", inputEmail.getText().toString());
         editor.apply();
 

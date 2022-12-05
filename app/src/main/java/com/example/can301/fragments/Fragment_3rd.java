@@ -1,12 +1,15 @@
 package com.example.can301.fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -36,7 +39,8 @@ public class Fragment_3rd extends Fragment {
     private int seatNumber;
     private FloatingActionButton profileBtn;
     private FloatingActionButton flushbtn;
-
+    private EditText tempTV;
+    private EditText humiTV;
     private ImageView[] seatList;
     private int[] seatStatus;
     //private WebView mWebview;
@@ -47,7 +51,11 @@ public class Fragment_3rd extends Fragment {
     private ImageView horTable2Btn;
     private ImageView sqrTable1Btn;
     private ImageView sqrTable2Btn;
+    private ImageButton tempHumiBtn;
     private String backendUrl;
+    private String admin1ID;
+    private String admin2ID;
+    private String id;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,7 +70,6 @@ public class Fragment_3rd extends Fragment {
     }
 
     private void initVariable(){
-        // 写死椅子数 60
         seatNumber = 60;
         seatList = new ImageView[seatNumber];
         // mWebview = findViewById(R.id.weather);
@@ -73,11 +80,16 @@ public class Fragment_3rd extends Fragment {
         sqrTable1Btn = (ImageView)root.findViewById(R.id.squareTable1);
         sqrTable2Btn = (ImageView)root.findViewById(R.id.squareTable2);
         flushbtn = (FloatingActionButton) root.findViewById(R.id.floatingActionButton2);
+        tempHumiBtn = root.findViewById(R.id.changeTemp);
         profileBtn = root.findViewById(R.id.floatingActionButton);
+        humiTV = root.findViewById(R.id.humidText);
+        tempTV = root.findViewById(R.id.tempText);
         Resources res = getResources();
         backendUrl = "http://47.94.44.163:8080";
         findSeat();
+        getTempHumid();
         getSeatStatus();
+        checkAdmin();
         profileBtn.setOnClickListener(this::onClick);
         flushbtn.setOnClickListener(this::flush);
         table1Btn.setOnClickListener(this::jumpToTable1);
@@ -87,11 +99,66 @@ public class Fragment_3rd extends Fragment {
         sqrTable1Btn.setOnClickListener(this::jumpToSqrTable1);
         sqrTable2Btn.setOnClickListener(this::jumpToSqrTable2);
     }
+
     private void flush(View view){
         getActivity().finish();
         getActivity().overridePendingTransition(0, 0);
         startActivity(getActivity().getIntent());
         getActivity().overridePendingTransition(0, 0);
+    }
+
+    private void getTempHumid(){
+        HashMap hashMap = new HashMap();
+        hashMap.put("id","3");
+        //System.out.println(getActivity());
+        OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/user/getTemp/", new NetAgent() {
+            @Override
+            public void onSuccess(String result) {
+                Map<String, String> map = FastJsonUtils.stringToCollect(result);
+                String temp = String.valueOf(map.get("temp"));
+                String hum = String.valueOf(map.get("hum"));
+                if (map.get("status").equals("200")) {
+                    tempTV.setText(temp);
+                    humiTV.setText(hum);
+                } else {
+                    Toast toastCenter = Toast.makeText(getActivity().getApplicationContext(), "no", Toast.LENGTH_SHORT);
+                    toastCenter.setGravity(Gravity.CENTER, 0, 0);
+                    toastCenter.show();
+                }
+            }
+            @Override
+            public void onError(Exception e) {
+                if (isAdded()) {
+                    e.printStackTrace();
+                    Toast center = Toast.makeText(getActivity().getApplicationContext(), "network failure", Toast.LENGTH_SHORT);
+                    center.setGravity(Gravity.CENTER, 0, 0);
+                    center.show();
+                }
+            }
+        },hashMap,getActivity());
+    }
+
+
+
+    private void checkAdmin(){
+        readAdminID();
+        readID();
+        if(!(id.equals(admin1ID)||id.equals(admin2ID))){
+            tempHumiBtn.setVisibility(View.GONE);
+            tempTV.setFocusable(false);
+            humiTV.setFocusable(false);
+        }
+    }
+
+    private void readAdminID(){
+        SharedPreferences mypref = root.getContext().getSharedPreferences("login", root.getContext().MODE_PRIVATE);
+        admin1ID = mypref.getString("admin1ID", "1");
+        admin2ID = mypref.getString("admin2ID", "1");
+    }
+
+    private void readID(){
+        SharedPreferences mypref = root.getContext().getSharedPreferences("config", root.getContext().MODE_PRIVATE);
+        id = mypref.getString("id", "1");
     }
 
     private void getSeatStatus(){

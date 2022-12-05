@@ -70,7 +70,7 @@ public class giftFragment extends Fragment {
             public void onSuccess(String result) {
                 Map<String, String> map = FastJsonUtils.stringToCollect(result);
                 String cash = String.valueOf(map.get("cash"));
-                if (map.get("status").equals("200")) {
+                if (String.valueOf(map.get("status")).equals("200")) {
                     //Toast.makeText(getActivity().getApplicationContext(), "get cash", Toast.LENGTH_SHORT).show();
                     Cash.setText("Cash: " + cash);
                 } else {
