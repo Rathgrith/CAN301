@@ -38,7 +38,6 @@ public class profileFragment extends Fragment {
     private String id;
     private ImageButton editName;
     private String nickname;
-
     private int NumberOfGift;
     private int[] GiftStatus;
     private String backendUrl = "http://47.94.44.163:8080";
@@ -118,7 +117,7 @@ public class profileFragment extends Fragment {
                 Map<String, String> map = FastJsonUtils.stringToCollect(result);
                 String cash = String.valueOf(map.get("cash"));
                 if (String.valueOf(map.get("status")).equals("200")) {
-                    Toast.makeText(getActivity().getApplicationContext(), "get cash", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getActivity().getApplicationContext(), "get cash", Toast.LENGTH_SHORT).show();
                     cashTV.setText(" " + cash);
                 } else {
                     Toast toastCenter = Toast.makeText(getActivity().getApplicationContext(), "no", Toast.LENGTH_SHORT);

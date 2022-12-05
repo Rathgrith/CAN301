@@ -90,6 +90,7 @@ public class Fragment_3rd extends Fragment {
         getTempHumid();
         getSeatStatus();
         checkAdmin();
+        tempHumiBtn.setOnClickListener(this::updateTempHumid);
         profileBtn.setOnClickListener(this::onClick);
         flushbtn.setOnClickListener(this::flush);
         table1Btn.setOnClickListener(this::jumpToTable1);
@@ -105,6 +106,39 @@ public class Fragment_3rd extends Fragment {
         getActivity().overridePendingTransition(0, 0);
         startActivity(getActivity().getIntent());
         getActivity().overridePendingTransition(0, 0);
+    }
+
+    private void updateTempHumid(View view){
+        String temp = tempTV.getText().toString();
+        String hum = humiTV.getText().toString();
+        HashMap hashMap = new HashMap();
+        hashMap.put("id","3");
+        hashMap.put("temp", temp);
+        hashMap.put("hum", hum);
+        OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/user/updateTemp/", new NetAgent() {
+            @Override
+            public void onSuccess(String result) {
+                Map<String, String> map = FastJsonUtils.stringToCollect(result);
+                String temp = String.valueOf(map.get("temp"));
+                String hum = String.valueOf(map.get("hum"));
+                if (map.get("status").equals("200")) {
+                    getActivity().finish();
+                    getActivity().overridePendingTransition(0, 0);
+                    startActivity(getActivity().getIntent());
+                    getActivity().overridePendingTransition(0, 0);
+                }
+            }
+            @Override
+            public void onError(Exception e) {
+                if (isAdded()) {
+                    e.printStackTrace();
+                    Toast center = Toast.makeText(getActivity().getApplicationContext(), "network failure", Toast.LENGTH_SHORT);
+                    center.setGravity(Gravity.CENTER, 0, 0);
+                    center.show();
+                }
+            }
+        },hashMap,getActivity());
+
     }
 
     private void getTempHumid(){
