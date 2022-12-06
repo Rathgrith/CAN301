@@ -54,8 +54,10 @@ public class TutorialActivity extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(), mainTestActivity.class);
-                startActivity(intent);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putBoolean("hasReadTutorial",true);
+                editor.apply();
+                jumpToLogin();
             }
         });
 
