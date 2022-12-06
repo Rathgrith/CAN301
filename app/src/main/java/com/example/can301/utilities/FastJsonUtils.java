@@ -7,6 +7,7 @@ import com.alibaba.fastjson.serializer.JSONLibDataFormatSerializer;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -80,7 +81,15 @@ public class FastJsonUtils {
      * json字符串转化为map
      */
     public static <K, V> Map<K, V> stringToCollect(String s) {
-        return (Map<K, V>) JSONObject.parseObject(s);
+        Map<K,V> map;
+        try{
+              map = (Map<K, V>) JSONObject.parseObject(s);
+        }catch (Exception e){
+            HashMap<String,String> errorMap = new HashMap<>();
+            errorMap.put("message","Server has broken down");
+            return (Map<K, V>) errorMap;
+        }
+        return map;
     }
 
     /**
