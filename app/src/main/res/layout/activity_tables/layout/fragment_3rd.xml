@@ -365,7 +365,7 @@
 
                     <ImageView
                         android:id="@+id/seat46"
-                        android:layout_width="20dp"
+                        android:layout_width="13dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="7dp"
