@@ -252,22 +252,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    scrollView.getWindowVisibleDisplayFrame(rect);
-                    int current = rect.bottom;
-                    while (current == noKeyBoardHeight) {
+                    try {
                         scrollView.getWindowVisibleDisplayFrame(rect);
-                        current = rect.bottom;
-                    }
-//                        in case hide half
-                    int safeMargin = 40;
-                    int scrollHeight = (location[1] + safeMargin + rBtn.getHeight()) - current;
-//                        Log.d(TAG, "run: "+location[1]);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            scrollView.scrollTo(0, (int) scrollHeight);
+                        int current = rect.bottom;
+                        while (current == noKeyBoardHeight&&scrollView!=null) {
+                            scrollView.getWindowVisibleDisplayFrame(rect);
+                            current = rect.bottom;
                         }
-                    });
+//                        in case hide half
+                        int safeMargin = 40;
+                        int scrollHeight = (location[1] + safeMargin + rBtn.getHeight()) - current;
+//                        Log.d(TAG, "run: "+location[1]);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                scrollView.scrollTo(0, (int) scrollHeight);
+                            }
+                        });
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
 
                 }
             }).start();

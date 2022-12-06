@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/out_est"
+    android:id="@+id/out_est_register"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -122,7 +122,7 @@
         <WebView
             android:id="@+id/l2d"
             android:layout_width="match_parent"
-            android:layout_height="130pt"
+            android:layout_height="300dp"
             android:layout_marginLeft="0pt"
             android:layout_marginTop="10dp"
             tools:ignore="WebViewLayout" />

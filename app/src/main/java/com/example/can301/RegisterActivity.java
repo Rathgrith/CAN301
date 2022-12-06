@@ -69,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
         backendUrl = (String) res.getText(R.string.remoteBaseUrl);
 
 //        below is to prevent the keyboard from hidding the button
-        scrollView = findViewById(R.id.out_est);
+        scrollView = findViewById(R.id.out_est_register);
         scrollView.getWindowVisibleDisplayFrame(rect);
         noKeyBoardHeight = rect.bottom;
         finalShow = rBtn;
@@ -213,22 +213,27 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    scrollView.getWindowVisibleDisplayFrame(rect);
-                    int current = rect.bottom;
-                    while (current == noKeyBoardHeight) {
+                    try {
                         scrollView.getWindowVisibleDisplayFrame(rect);
-                        current = rect.bottom;
-                    }
-//                        in case hide half
-                    int safeMargin = 40;
-                    int scrollHeight = (location[1] + safeMargin + finalShow.getHeight()) - current;
-//                        Log.d(TAG, "run: "+location[1]);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            scrollView.scrollTo(0, (int) scrollHeight);
+                        int current = rect.bottom;
+                        while (current == noKeyBoardHeight&&scrollView!=null) {
+                            scrollView.getWindowVisibleDisplayFrame(rect);
+                            current = rect.bottom;
                         }
-                    });
+//                        in case hide half
+                        int safeMargin = 40;
+                        int scrollHeight = (location[1] + safeMargin + finalShow.getHeight()) - current;
+//                        Log.d(TAG, "run: "+location[1]);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                scrollView.scrollTo(0, (int) scrollHeight);
+                            }
+                        });
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
             }).start();
 //                Log.d(TAG, "onFocusrb1"+b1);
