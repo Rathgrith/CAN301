@@ -142,24 +142,26 @@ public class Fragment_3rd extends Fragment {
     }
 
     private void getTempHumid(){
+        try{
         HashMap hashMap = new HashMap();
         hashMap.put("id","3");
         //System.out.println(getActivity());
         OkHttpUtils.getSoleInstance().doPostForm(backendUrl + "/user/getTemp/", new NetAgent() {
             @Override
             public void onSuccess(String result) {
-                Map<String, String> map = FastJsonUtils.stringToCollect(result);
-                String temp = String.valueOf(map.get("temp"));
-                String hum = String.valueOf(map.get("hum"));
-                if (map.get("status").equals("200")) {
-                    tempTV.setText(temp);
-                    humiTV.setText(hum);
-                } else {
-                    Toast toastCenter = Toast.makeText(getActivity().getApplicationContext(), "no", Toast.LENGTH_SHORT);
-                    toastCenter.setGravity(Gravity.CENTER, 0, 0);
-                    toastCenter.show();
+
+                    Map<String, String> map = FastJsonUtils.stringToCollect(result);
+                    String temp = String.valueOf(map.get("temp"));
+                    String hum = String.valueOf(map.get("hum"));
+                    if (map.get("status").equals("200")) {
+                        tempTV.setText(temp);
+                        humiTV.setText(hum);
+                    } else {
+                        Toast toastCenter = Toast.makeText(getActivity().getApplicationContext(), "no", Toast.LENGTH_SHORT);
+                        toastCenter.setGravity(Gravity.CENTER, 0, 0);
+                        toastCenter.show();
+                    }
                 }
-            }
             @Override
             public void onError(Exception e) {
                 if (isAdded()) {
@@ -170,6 +172,10 @@ public class Fragment_3rd extends Fragment {
                 }
             }
         },hashMap,getActivity());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

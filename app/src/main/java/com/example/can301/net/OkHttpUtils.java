@@ -1,10 +1,8 @@
 package com.example.can301.net;
 
 import android.app.Activity;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -80,7 +78,8 @@ public class OkHttpUtils {
                 });
             }
             @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+            public void onResponse(@NonNull Call call, @NonNull Response response)  {
+                try{
                 String string = null;
                 string = response.body().string();
                 String finalString = string;
@@ -89,7 +88,10 @@ public class OkHttpUtils {
                     public void run() {
                         netAgent.onSuccess(finalString);
                     }
-                });
+                });}
+                catch (Exception e){
+                    e.printStackTrace();
+                }
 
             }
         });
