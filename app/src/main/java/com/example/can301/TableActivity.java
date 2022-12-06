@@ -116,14 +116,9 @@ public class TableActivity extends Activity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static boolean isSameDay(Date date1, Date date2) {
-        LocalDate localDate1 = date1.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
-        LocalDate localDate2 = date2.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
-        return localDate1.isEqual(localDate2);
-    }
+            int days = (int) ((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
+            return days < 1;
+        }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void onCheckInClick(View view) {
@@ -132,10 +127,11 @@ public class TableActivity extends Activity {
         SharedPreferences userpref = getSharedPreferences("config", MODE_PRIVATE);
         userid = userpref.getString("id", "1");
         SharedPreferences mypref = getSharedPreferences("tab", MODE_PRIVATE);
-        int checkCount = mypref.getInt("checkCount", 0);
         Date currdate = new Date(); //or simply new Date();
         Date archivedDate = new Date(mypref.getLong("date", 0));
-
+        long millis = currdate.getTime();
+        SharedPreferences.Editor editor = mypref.edit();
+        editor.putLong("date", millis);
         //!
         // one seat 5 credits by checkin Commit (max 25), global time recorded, uncomment condition to activate date detection
         if(!isSameDay(currdate,archivedDate)){
@@ -146,17 +142,11 @@ public class TableActivity extends Activity {
                 }
             }
             if (credit > 25) credit = 25;
-/*            int old_ava = mypref.getInt("available", 0);
+            int old_ava = mypref.getInt("available", 0);
             int old_unk = mypref.getInt("unknown", 0);
-            int old_tak = mypref.getInt("taken", 0);*/
-            long millis = currdate.getTime();
-            SharedPreferences.Editor editor = mypref.edit();
-            editor.putLong("date", millis);
-            checkCount += 1;
-            editor.putInt("checkCount", checkCount);
-            editor.apply();
+            int old_tak = mypref.getInt("taken", 0);
             gainCoin(userid, credit);
-            Toast.makeText(getApplicationContext(), "you earned " + credit + "!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "you earned " + credit, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(TableActivity.this, mainTestActivity.class);
             startActivity(intent);
         }
@@ -194,9 +184,15 @@ public class TableActivity extends Activity {
     private void onSeatClick(View view) {
         int id = view.getId();
         int specSeatIdx = startIndex;
+        String staticSeatId = "";
+        int status = 0;
+        int localID = 0;
         for (int i = 0; i<seatIDs.size(); i++) {
             if(id == seatIDs.get(i)){
                 specSeatIdx += i;
+                staticSeatId = "seat" + (i+1);
+                status = seatStatus[startIndex+i];
+                localID = i;
             }
         }
         changeSeatStatus(specSeatIdx+1,999);

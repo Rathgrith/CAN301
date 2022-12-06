@@ -19,9 +19,9 @@
             android:enabled="true"
             android:exported="false" />
 
-        <receiver
-            android:name=".receiver.NotificationClickReceiver">
-        </receiver>
+<!--        <receiver-->
+<!--            android:name=".receiver.NotificationClickReceiver">-->
+<!--        </receiver>-->
 
         <activity
             android:name=".mainTestActivity"

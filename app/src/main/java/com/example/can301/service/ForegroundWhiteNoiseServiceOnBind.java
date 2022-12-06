@@ -25,7 +25,7 @@ import androidx.core.app.NotificationCompat;
 import com.example.can301.R;
 import com.example.can301.adapter.NoiseListAdapter;
 import com.example.can301.entity.NoiseItem;
-import com.example.can301.receiver.NotificationClickReceiver;
+//import com.example.can301.receiver.NotificationClickReceiver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -211,8 +211,8 @@ public class ForegroundWhiteNoiseServiceOnBind extends Service implements MediaP
         //设置通知栏的标题内容
         builder.setContentTitle("The music \""+noiseItem.title+"\" is Playing");
         builder.setChannelId(CHANNEL_ONE_ID);
-        Intent intent =new Intent (this, NotificationClickReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+//        Intent intent =new Intent (this, NotificationClickReceiver.class);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         //创建通知
         Notification notification = builder.build();
         //设置为前台服务
