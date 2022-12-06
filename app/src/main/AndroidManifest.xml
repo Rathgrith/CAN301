@@ -34,7 +34,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".TutorialActivity"
+            android:name=".LoginActivity"
             android:exported="false"/>
         <activity
             android:name=".RegisterActivity"
@@ -47,7 +47,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".TutorialActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,7 +5,9 @@ import static com.example.can301.R.id.btn_skip;
 import static com.example.can301.R.id.viewPage;
 import static com.example.can301.R.id.vp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +45,8 @@ public class TutorialActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences sharedPref = getSharedPreferences("config", Context.MODE_PRIVATE);
+        if (sharedPref.getBoolean("hasReadTutorial", false)) jumpToLogin();
         setContentView(R.layout.activity_tutorial);
         System.out.println("hmmmmmm");
         setInt();
@@ -59,8 +63,10 @@ public class TutorialActivity extends AppCompatActivity {
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(), mainTestActivity.class);
-                startActivity(intent);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putBoolean("hasReadTutorial",true);
+                editor.apply();
+                jumpToLogin();
             }
         });
     }
@@ -95,6 +101,13 @@ public class TutorialActivity extends AppCompatActivity {
             }
 
         });
+    }
+    private void jumpToLogin() {
+        Intent intent = null;
+        //setContentView(R.string.login_flag);
+        intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 }

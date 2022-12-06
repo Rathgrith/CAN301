@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -117,10 +118,8 @@ public class profileFragment extends Fragment {
                         requireContext(),
                         giftList,
                         R.layout.profile_gift_item,
-
                         new String[]{"image","text"},
-
-                new int[]{R.id.giftImage,R.id.numbersText});
+                new int[]{R.id.profile_gift,R.id.numbersText});
                 builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -181,7 +180,7 @@ public class profileFragment extends Fragment {
                     cashTV.setText(" " + cash);
                 } else {
                     Toast toastCenter = Toast.makeText(getActivity().getApplicationContext(), "no", Toast.LENGTH_SHORT);
-                    toastCenter.setGravity(Gravity.CENTER, 0, 0);
+//                    toastCenter.setGravity(Gravity.CENTER, 0, 0);
                     toastCenter.show();
                 }
             }
@@ -190,7 +189,7 @@ public class profileFragment extends Fragment {
                     if (isAdded()) {
                         e.printStackTrace();
                         Toast center = Toast.makeText(getActivity().getApplicationContext(), "network failure", Toast.LENGTH_SHORT);
-                        center.setGravity(Gravity.CENTER, 0, 0);
+//                        center.setGravity(Gravity.CENTER, 0, 0);
                         center.show();
                     }
                 }
@@ -217,6 +216,10 @@ public class profileFragment extends Fragment {
                     ss[i] = Integer.parseInt(b[i].toString());
                 }
                 GiftStatus = ss;
+//                for(Integer x:GiftStatus){
+//                    Log.d("profile fragment", "profile: "+x);
+//                }
+
                 Map<Integer,Integer> itemAndNumber= new HashMap<>();
                 for(Integer x:ss){
                     if(itemAndNumber.containsKey(x)){
@@ -225,12 +228,14 @@ public class profileFragment extends Fragment {
                         itemAndNumber.put(x,1);
                     }
                 }
+//                Log.d("map", "profile: "+itemAndNumber);
                 for(Integer x:itemAndNumber.keySet()){
                     Map<String,Object> temMap = new HashMap<>();
                     temMap.put("image",giftImageArray[x]);
                     temMap.put("text","You can change "+itemAndNumber.get(x)+" items!");
                     giftList.add(temMap);
                 }
+                Log.d("map", "profile: "+giftList);
                 NumberOfGift = GiftStatus.length;
                 // System.out.println(seatStatus);
                 if (status.equals("200")) {
