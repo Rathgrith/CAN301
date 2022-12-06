@@ -190,7 +190,7 @@
                     android:layout_below="@id/horizontalTable2"
                     android:layout_alignRight="@id/horizontalTable2"
                     android:layout_marginTop="40dp"
-                    android:layout_marginRight="-10dp"
+                    android:layout_marginRight="10dp"
                     android:clickable="true"
                     app:backgroundTint="?attr/colorButtonNormal"
                     app:srcCompat="@android:drawable/ic_popup_sync" />
@@ -334,7 +334,7 @@
                     android:layout_height="30dp"
                     android:layout_alignLeft="@id/horizontalTable2"
                     android:layout_alignTop="@id/horizontalTable2"
-                    android:layout_marginLeft="0dp"
+                    android:layout_marginLeft="-5dp"
                     android:layout_marginTop="0dp"
                     android:background="#A9FFFFFF"
                     android:orientation="horizontal">
@@ -365,7 +365,7 @@
 
                     <ImageView
                         android:id="@+id/seat46"
-                        android:layout_width="13dp"
+                        android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="7dp"
@@ -453,7 +453,7 @@
                     android:layout_height="30dp"
                     android:layout_alignLeft="@id/horizontalTable1"
                     android:layout_alignTop="@id/horizontalTable1"
-                    android:layout_marginLeft="0dp"
+                    android:layout_marginLeft="-5dp"
                     android:layout_marginTop="0dp"
                     android:background="#A9FFFFFF"
                     android:orientation="horizontal">
