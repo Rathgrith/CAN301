@@ -42,19 +42,18 @@
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="382dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="Enter Email Address"
         android:inputType="text"
         android:maxLines="1"
-        android:padding="10dp"
         android:textColor="@color/teal_200"
         android:textSize="16sp" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="383dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:digits="0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM"
@@ -62,13 +61,12 @@
         android:inputType="textPassword"
         android:maxLength="12"
         android:maxLines="1"
-        android:padding="10dp"
         android:textColor="@color/teal_200"
         android:textSize="16sp" />
 
     <EditText
         android:id="@+id/confirm_password"
-        android:layout_width="383dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5pt"
         android:digits="0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM"
@@ -76,7 +74,6 @@
         android:inputType="textPassword"
         android:maxLength="12"
         android:maxLines="1"
-        android:padding="10dp"
         android:textColor="@color/teal_200"
         android:textSize="16sp" />
 
@@ -84,8 +81,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:paddingTop="3pt"
+        android:paddingTop="3dp"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"

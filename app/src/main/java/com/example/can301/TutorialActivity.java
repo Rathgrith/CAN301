@@ -35,7 +35,7 @@ public class TutorialActivity extends AppCompatActivity {
     private View root;
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 3;
+    private int num_page = 4;
     private CircleIndicator3 mIndicator;
 
     private Button skip;
@@ -84,8 +84,8 @@ public class TutorialActivity extends AppCompatActivity {
         mIndicator.createIndicators(num_page,0);
         //ViewPager Setting
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-        mPager.setCurrentItem(3);
-        mPager.setOffscreenPageLimit(3);
+        mPager.setCurrentItem(4);
+        mPager.setOffscreenPageLimit(4);
 
         mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
