@@ -7,6 +7,8 @@
     <string name="checkLogged">isLoggedIn</string>
     <string name="checkEmail">email</string>
     <string name="remoteBaseUrl">http://47.94.44.163:8080</string>
+    <string name="shortCutName">scan qr code</string>
+    <string name="shortCutShortName">scan</string>
     <string-array name="tableType">
         <item>vertical</item>
         <item>horizontal</item>

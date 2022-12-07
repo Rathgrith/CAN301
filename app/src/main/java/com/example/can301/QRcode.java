@@ -1,7 +1,10 @@
 package com.example.can301;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,6 +18,7 @@ public class QRcode extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_qrcode);
         IntentIntegrator intentIntegrator = new IntentIntegrator(QRcode.this);
         // start scanning
@@ -58,6 +62,9 @@ public class QRcode extends AppCompatActivity {
     }
 
     private void jumpToTable1(){
+        if(!ifSwitchToTable()){
+            return;
+        }
         // int id = view.getId();
         Intent intent = null;
         intent = new Intent(QRcode.this, TableActivity.class);
@@ -73,6 +80,9 @@ public class QRcode extends AppCompatActivity {
     }
 
     private void jumpToTable2(){
+        if(!ifSwitchToTable()){
+            return;
+        }
         Intent intent = null;
         intent = new Intent(QRcode.this, TableActivity.class);
         Bundle tableBundle = new Bundle();
@@ -87,6 +97,9 @@ public class QRcode extends AppCompatActivity {
     }
 
     private void jumpToHorTable1(){
+        if(!ifSwitchToTable()){
+            return;
+        }
         Intent intent = null;
         intent = new Intent(QRcode.this, TableActivity.class);
         Bundle tableBundle = new Bundle();
@@ -101,6 +114,9 @@ public class QRcode extends AppCompatActivity {
     }
 
     private void jumpToHorTable2(){
+        if(!ifSwitchToTable()){
+            return;
+        }
         Intent intent = null;
         intent = new Intent(QRcode.this, TableActivity.class);
         Bundle tableBundle = new Bundle();
@@ -115,6 +131,9 @@ public class QRcode extends AppCompatActivity {
     }
 
     private void jumpToSqrTable1(){
+        if(!ifSwitchToTable()){
+            return;
+        }
         Intent intent = null;
         intent = new Intent(QRcode.this, TableActivity.class);
         Bundle tableBundle = new Bundle();
@@ -129,6 +148,9 @@ public class QRcode extends AppCompatActivity {
     }
 
     private void jumpToSqrTable2(){
+        if(!ifSwitchToTable()){
+            return;
+        }
         Intent intent = null;
         intent = new Intent(QRcode.this, TableActivity.class);
         Bundle tableBundle = new Bundle();
@@ -140,5 +162,26 @@ public class QRcode extends AppCompatActivity {
         tableBundle.putString("type", "2");
         intent.putExtras(tableBundle);
         startActivity(intent);
+    }
+    private Boolean ifSwitchToTable(){
+        SharedPreferences sharedPreferences = getSharedPreferences("config", Context.MODE_PRIVATE);
+        if(!sharedPreferences.getBoolean("isLoggedIn",false)){
+            Log.d("qr", "qrcode: hasGone");
+            if(!sharedPreferences.getBoolean("hasReadTutorial",false)){
+                Log.d("qr", "qrcode: hasGone1");
+                Intent intent = new Intent(QRcode.this,TutorialActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                return false;
+            }else {
+                Log.d("qr", "qrcode: hasGone1");
+                Intent intent = new Intent(QRcode.this,LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                return false;
+            }
+
+        }
+        return true;
     }
 }

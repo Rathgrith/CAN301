@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_qr_code_scanner_24"
+        android:shortcutId="first"
+        android:shortcutShortLabel="@string/shortCutShortName"
+        android:shortcutLongLabel="@string/shortCutName"
+        >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.can301.QRcode"
+            android:targetPackage="com.example.can301" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>

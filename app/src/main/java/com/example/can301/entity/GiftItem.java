@@ -21,9 +21,9 @@ public class GiftItem {
     }
 
 
-    public static int[] imageArray = {R.drawable.xjtlu_bear,R.drawable.xjtlu_bird,R.drawable.xjtlu_cap,R.drawable.xjtlu_bear,R.drawable.xjtlu_bird,R.drawable.xjtlu_cap};
-    public static String[] nameArray = {"XJTLU Bear","XJTLU Bird","XJTLU Cap","XJTLU Bear","XJTLU Bird","XJTLU Cap"};
-    public static int[] priceArray = {1000,1500,2000,1000,1500,2000};
+    public static int[] imageArray = {R.drawable.xjtlu_bear,R.drawable.xjtlu_bird,R.drawable.xjtlu_cap,R.drawable.xjtlu_t_shirt,R.drawable.xjtlu_dress,R.drawable.xjtlu_bags};
+    public static String[] nameArray = {"XJTLU Bear","XJTLU Bird","XJTLU Cap","XJTLU T-shrit","XJTLU dress","XJTLU bags"};
+    public static int[] priceArray = {1000,1500,2000,1800,2500,500};
 
 
     public static List<GiftItem> getDefaultList(){

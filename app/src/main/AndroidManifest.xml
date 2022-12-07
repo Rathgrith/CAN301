@@ -48,7 +48,10 @@
         </activity>
         <activity
             android:name=".TutorialActivity"
+            android:icon="@drawable/app_icon"
+            android:label="Lib Scout"
             android:exported="true"
+
             android:screenOrientation="portrait"
             >
             <intent-filter>
@@ -58,8 +61,8 @@
             </intent-filter>
 
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcut"/>
         </activity>
     </application>
 

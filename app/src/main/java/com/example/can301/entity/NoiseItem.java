@@ -21,7 +21,7 @@ public class NoiseItem {
 
     public static int[] mediaResources = {R.raw.bonfire_in_the_forest,R.raw.rain,R.raw.thunderstorm,R.raw.wave,R.raw.wind_and_rain};
     public static int[] imageArray = {R.mipmap.fire_in_forest,R.mipmap.rain,R.mipmap.thunde_rain,R.mipmap.wave,R.mipmap.wind};
-    public static String[] titleArray = {"Bonfire in the forest","Rain","Thunder and rain","Wave","wind"};
+    public static String[] titleArray = {"Bonfire","Rain","Thunder rain","Wave","wind"};
     public static String[] noiseDescription= {"Listen to the sound of bonfire burning, insects and birds will calm you down.",
                                                 "The sound of rain is the developer's favorite white noise, it can make you relax",
                                                 "Thunder and rain is helpful to make you asleep and provide you of a sense of safety",
