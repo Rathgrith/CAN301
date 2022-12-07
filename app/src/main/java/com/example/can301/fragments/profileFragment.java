@@ -51,7 +51,7 @@ public class profileFragment extends Fragment {
     private int[] GiftStatus;
     private ImageButton changeAvatar;
 //    beacuse of the id setting in backend, use -1 to occupy the index 0.
-    private int[] giftImageArray = {-1,R.drawable.xjtlu_bear,R.drawable.xjtlu_bird,R.drawable.xjtlu_cap, R.drawable.boder_music_text,R.drawable.xjtlu_dress,R.drawable.xjtlu_bags};
+    private int[] giftImageArray = {-1,R.drawable.xjtlu_bear,R.drawable.xjtlu_bird,R.drawable.xjtlu_cap, R.drawable.xjtlu_t_shirt,R.drawable.xjtlu_dress,R.drawable.xjtlu_bags};
     int avatar_index;
     private List<Map<String, Object>> giftList = new ArrayList<>();
     private String backendUrl = "http://47.94.44.163:8080";
