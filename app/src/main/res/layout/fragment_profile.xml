@@ -36,7 +36,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/icons8_change_avatar_24"
-                        android:background="@drawable/border_profile_gift"
+                        android:background="@drawable/border_profile_change_avatar"
                         android:layout_alignBottom="@+id/profileIV"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/profileIV" />

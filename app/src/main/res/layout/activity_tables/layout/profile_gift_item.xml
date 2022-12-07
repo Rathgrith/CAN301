@@ -34,7 +34,7 @@
         android:gravity="center"
         android:textSize="20dp"
         android:text="Fire in the forest"
-        android:textColor="@color/black" />
+        android:textColor="@color/white" />
        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
