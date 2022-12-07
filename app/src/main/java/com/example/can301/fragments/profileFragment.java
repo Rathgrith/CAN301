@@ -232,7 +232,7 @@ public class profileFragment extends Fragment {
                 for(Integer x:itemAndNumber.keySet()){
                     Map<String,Object> temMap = new HashMap<>();
                     temMap.put("image",giftImageArray[x]);
-                    temMap.put("text","You can change "+itemAndNumber.get(x)+" items!");
+                    temMap.put("text","You can exchange "+itemAndNumber.get(x)+" items!");
                     giftList.add(temMap);
                 }
                 Log.d("map", "profile: "+giftList);
