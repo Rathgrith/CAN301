@@ -18,7 +18,7 @@
 
 -   Cloning the project using Android Studio could automatically build a release version based on current codes on repository after synchronizing gradle dependencies. It should be like this:
 
-​                                ![image-20230804200233705](C:\Users\50502\AppData\Roaming\Typora\typora-user-images\image-20230804200233705.png)
+​                                ![image-20230804200233705](Project.png)
 
 - If you need to do deployment debugging, try launching the project directly: 
   - If you wish to run the back-end part of this project,  you need to adjust the configuration of the linked database in src/main/resources/application.yml
@@ -27,36 +27,36 @@
 
 ### Tutorial Page 
 
-![image-20230804200525886](C:\Users\50502\AppData\Roaming\Typora\typora-user-images\image-20230804200525886.png)
+![image-20230804200525886](Tutorial1.png)
 
-![image-20230804200600408](C:\Users\50502\AppData\Roaming\Typora\typora-user-images\image-20230804200600408.png)
+![image-20230804200600408](Tutorial2.png)
 
 ### Login Page
 
-![image-20230804200716087](C:\Users\50502\AppData\Roaming\Typora\typora-user-images\image-20230804200716087.png)
+![image-20230804200716087](Login.png)
 
 
 
 ### Main Functions
 
-![image-20230804200758413](C:\Users\50502\AppData\Roaming\Typora\typora-user-images\image-20230804200758413.png)
+![image-20230804200758413](Main1.png)
 
-![image-20230804200824253](C:\Users\50502\AppData\Roaming\Typora\typora-user-images\image-20230804200824253.png)
+![image-20230804200824253](Main2.png)
 
-![image-20230804200836999](C:\Users\50502\AppData\Roaming\Typora\typora-user-images\image-20230804200836999.png)
+![image-20230804200836999](Main3.png)
 
-
+![image-202308042008999](Main4.png)
 
 ## UML Diagrams
 
 ### Frontend Class Diagram 
 
-![image-20230804200918628](C:\Users\50502\AppData\Roaming\Typora\typora-user-images\image-20230804200918628.png)
+![image-20230804200918628](FrontendDiagram.png)
 
 ### Backend Class Diagram
 
-![image-20230804201249201](C:\Users\50502\AppData\Roaming\Typora\typora-user-images\image-20230804201249201.png)
+![image-20230804201249201](BackendDiagram.png)
 
 ### User Activity Diagram
 
-![image-20230804201324120](C:\Users\50502\AppData\Roaming\Typora\typora-user-images\image-20230804201324120.png)
+![image-20230804201324120](ActivityDiagram.png)
